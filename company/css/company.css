@@ -3,3 +3,149 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    width: 100%;
+    max-height: fit-content;
+    background-color: #8ca2f8 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-box {
+    width: 80%;
+    height: auto;
+    border-radius: 25px;
+    padding: 30px 0px 0px;
+    margin-top: 20px;
+}
+
+/* Start Navbar Coding */
+
+.main-box .navbar {
+    border-radius: 25px;
+}
+
+.main-box .navbar .navbar-brand {
+    font-size: 25px;
+    font-weight: bold;
+    color: #FC91BC;
+    text-shadow: 0px 0px 15px #FC91BC;
+    transition: .3s;
+}
+
+.main-box .navbar .navbar-brand:hover {
+    color: #fc468e;
+    transition: .3s;
+}
+
+.main-box .navbar .navbar-toggler {
+    box-shadow: 1px 1px 5px #FC91BC;
+}
+
+.main-box .navbar .nav-link {
+    color: #FC91BC;
+    transition: .3s;
+}
+
+.main-box .navbar .nav-link:hover {
+    color: #fc468e;
+    border-bottom: 2px solid #fc468e;
+    transition: .3s;
+}
+
+.main-box .navbar .nav-link.btn {
+    background-color: #FC91BC;
+    color: #fff;
+    margin-top: 3px;
+    transition: .3s;
+}
+
+.main-box .navbar .nav-link.btn:hover {
+    background-color: #fc468e;
+    border-bottom: none;
+    transition: .3s;
+}
+
+/* End Navbar Coding */
+
+
+
+/* Start Login & SignUp Box Coding */
+
+.main-box .login-box,
+.main-box .signup-box {
+    width: 80%;
+}
+
+.main-box .login-box h1 {
+    color: #FC91BC;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 35px;
+}
+
+.main-box .login-box label,
+.main-box .signup-box label {
+    color: #fc468e;
+    font-family: sans-serif;
+}
+
+.main-box .login-box input,
+.main-box .signup-box input,
+.main-box .signup-box textarea {
+    border: none;
+    box-shadow: none;
+    border-bottom: 2px solid #FC91BC;
+}
+
+.main-box .login-box input:focus,
+.main-box .signup-box input:focus,
+.main-box .signup-box textarea:focus {
+    border-bottom: 2px solid #fc468e;
+}
+
+.main-box .login-box a,
+.main-box .signup-box a {
+    color: #FC91BC;
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+.main-box .login-box a:hover,
+.main-box .signup-box a:hover {
+    color: #fc468e;
+}
+
+.main-box .login-box button,
+.main-box .signup-box button {
+    background-color: #FC91BC;
+    color: #fff;
+    font-size: 22px;
+    font-family: sans-serif;
+    transition: .3s;
+}
+
+.main-box .login-box button:hover,
+.main-box .signup-box button:hover {
+    background-color: #fc468e;
+    transition: .3s;
+}
+
+.main-box .login-box {
+    opacity: 0;
+    height: 0;
+}
+
+.main-box .login-box.active {
+    opacity: 1;
+    height: auto;
+}
+
+.main-box .signup-box {
+    opacity: 0;
+    height: 0;
+}
+
+/* End Login & SignUp Box Coding */

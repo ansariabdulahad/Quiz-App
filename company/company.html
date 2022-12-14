@@ -14,8 +14,82 @@
     <title>Company</title>
 </head>
 <body>
-    <div class="container-fluid vh-100 bg-info">
-        <h1>Company</h1>
+    <div class="container bg-white main-box">
+        <!-- Start Navbar Coding -->
+        <div class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand">Brand Logo</a>
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#myNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <div class="navbar-nav w-100 justify-content-end">
+                        <a href="#" class="nav-link">Home</a>
+                        <a href="#" class="nav-link">Portfolio</a>
+                        <a href="#" class="nav-link">About Us</a>
+                        <a href="#" class="nav-link">Contact US</a>
+                        <a href="#" class="nav-link btn">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Navbar Coding -->
+
+        <!-- Start Login Form And Signup Form Coding -->
+        <div class="row">
+            <div class="col-md-6 p-5">
+                <!-- Start Login Form Coding -->
+                <div class="login-box active">
+                    <h1>Welcome</h1>
+                    <form action="#">
+                        <label for="brand-code">Brand Code</label>
+                        <input type="text" id="brand-code" class="form-control mb-3">
+
+                        <label for="username">Username</label>
+                        <input type="text" id="username" class="form-control mb-3">
+
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-control mb-3">
+
+                        <div align="end"><a href="#">Student login form</a></div>
+
+                        <button class="btn w-100 mt-3">Sign In</button>
+                    </form>
+                </div>
+                <!-- End Login Form Coding -->
+
+                <!-- Start Signup Form Coding -->
+                <div class="signup-box">
+                    <form action="#">
+                        <label for="s-brand-code">Brand Code</label>
+                        <input type="text" id="s-brand-code" class="form-control mb-3">
+
+                        <label for="brand-name">Brand Name</label>
+                        <input type="text" id="brand-name" class="form-control mb-3">
+
+                        <label for="website">Wensite</label>
+                        <input type="text" id="website" class="form-control mb-3">
+
+                        <label for="contact">Contact</label>
+                        <input type="number" id="contact" class="form-control mb-3">
+                        
+                        <label for="address">Address</label>
+                        <textarea name="address" id="address" class="form-control mb-3"></textarea>
+
+                        <label for="s-username">Username</label>
+                        <input type="text" id="s-username" class="form-control mb-3">
+
+                        <label for="s-password">Password</label>
+                        <input type="password" id="s-password" class="form-control mb-3">
+
+                        <button class="btn w-100 mt-3">Sign Up</button>
+                    </form>
+                </div>
+                <!-- End Signup Form Coding -->
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+        <!-- End Login Form And Signup Form Coding -->
     </div>
 
 
