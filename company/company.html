@@ -10,6 +10,7 @@
     <!-- End CSS Link -->
     <!-- Start JS Link -->
     <script src="../common/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- End JS Link -->
     <title>Company</title>
 </head>
@@ -28,7 +29,8 @@
                         <a href="#" class="nav-link">Portfolio</a>
                         <a href="#" class="nav-link">About Us</a>
                         <a href="#" class="nav-link">Contact US</a>
-                        <a href="#" class="nav-link btn">Sign Up</a>
+                        <a href="#" class="nav-link btn signup-btn">Sign Up</a>
+                        <a href="#" class="nav-link btn login-btn d-none">Sign In</a>
                     </div>
                 </div>
             </div>
@@ -43,10 +45,10 @@
                     <h1>Welcome</h1>
                     <form action="#">
                         <label for="brand-code">Brand Code</label>
-                        <input type="text" id="brand-code" class="form-control mb-3">
+                        <input type="number" id="brand-code" class="form-control mb-3">
 
                         <label for="username">Username</label>
-                        <input type="text" id="username" class="form-control mb-3">
+                        <input type="email" id="username" class="form-control mb-3">
 
                         <label for="password">Password</label>
                         <input type="password" id="password" class="form-control mb-3">
@@ -60,34 +62,36 @@
 
                 <!-- Start Signup Form Coding -->
                 <div class="signup-box">
-                    <form action="#">
+                    <form action="#" class="signup-form">
                         <label for="s-brand-code">Brand Code</label>
-                        <input type="text" id="s-brand-code" class="form-control mb-3">
+                        <input type="number" required id="s-brand-code" class="form-control mb-3">
 
                         <label for="brand-name">Brand Name</label>
-                        <input type="text" id="brand-name" class="form-control mb-3">
+                        <input type="text" required id="brand-name" class="form-control mb-3">
 
                         <label for="website">Wensite</label>
                         <input type="text" id="website" class="form-control mb-3">
 
                         <label for="contact">Contact</label>
-                        <input type="number" id="contact" class="form-control mb-3">
+                        <input type="number" required id="contact" class="form-control mb-3">
                         
                         <label for="address">Address</label>
-                        <textarea name="address" id="address" class="form-control mb-3"></textarea>
+                        <textarea name="address" required id="address" class="form-control mb-3"></textarea>
 
                         <label for="s-username">Username</label>
-                        <input type="text" id="s-username" class="form-control mb-3">
+                        <input type="email" required id="s-username" class="form-control mb-3">
 
                         <label for="s-password">Password</label>
-                        <input type="password" id="s-password" class="form-control mb-3">
+                        <input type="password" required id="s-password" class="form-control mb-3">
 
-                        <button class="btn w-100 mt-3">Sign Up</button>
+                        <button class="btn w-100 mt-3 register-btn">Sign Up</button>
                     </form>
                 </div>
                 <!-- End Signup Form Coding -->
             </div>
-            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <img src="../images/signup-img-1.jpg" class="card-img rounded-5" alt="signup-img">
+            </div>
         </div>
         <!-- End Login Form And Signup Form Coding -->
     </div>

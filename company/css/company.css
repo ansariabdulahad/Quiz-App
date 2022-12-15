@@ -136,16 +136,25 @@ body {
 .main-box .login-box {
     opacity: 0;
     height: 0;
+    overflow: hidden;
 }
 
 .main-box .login-box.active {
     opacity: 1;
     height: auto;
+    transition: 1s ease-in;
 }
 
 .main-box .signup-box {
     opacity: 0;
     height: 0;
+    overflow: hidden;
+}
+
+.main-box .signup-box.active {
+    opacity: 1;
+    height: auto;
+    transition: 1s ease-in;
 }
 
 /* End Login & SignUp Box Coding */
