@@ -7,15 +7,19 @@
     <!-- Start CSS Link -->
     <link rel="stylesheet" href="../company/css/company.css">
     <link rel="stylesheet" href="../common/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/css/animate.min.css">
     <!-- End CSS Link -->
+
     <!-- Start JS Link -->
     <script src="../common/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../common/js/sweetalert.min.js"></script>
     <!-- End JS Link -->
+
     <title>Company</title>
 </head>
 <body>
-    <div class="container bg-white main-box">
+    <div class="container bg-white main-box" id="main-box">
+
         <!-- Start Navbar Coding -->
         <div class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
@@ -40,10 +44,11 @@
         <!-- Start Login Form And Signup Form Coding -->
         <div class="row">
             <div class="col-md-6 p-5">
+
                 <!-- Start Login Form Coding -->
                 <div class="login-box active">
                     <h1>Welcome</h1>
-                    <form action="#">
+                    <form action="#" class="signin-form">
                         <label for="brand-code">Brand Code</label>
                         <input type="number" id="brand-code" class="form-control mb-3">
 
@@ -55,7 +60,7 @@
 
                         <div align="end"><a href="#">Student login form</a></div>
 
-                        <button class="btn w-100 mt-3">Sign In</button>
+                        <button class="btn w-100 mt-3 signin-btn">Sign In</button>
                     </form>
                 </div>
                 <!-- End Login Form Coding -->
@@ -88,11 +93,13 @@
                     </form>
                 </div>
                 <!-- End Signup Form Coding -->
+
             </div>
             <div class="col-md-6">
                 <img src="../images/signup-img-1.jpg" class="card-img rounded-5" alt="signup-img">
             </div>
         </div>
+
         <!-- End Login Form And Signup Form Coding -->
     </div>
 
