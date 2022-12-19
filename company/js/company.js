@@ -11,7 +11,7 @@ let loginBtn = document.querySelector(".login-btn");
 /* Start Signup Btn Coding */
 
 signupBtn.addEventListener("click", () => {
-    
+
     signupBox.classList.add("active");
     loginBox.classList.remove("active");
     signupBtn.classList.add("d-none");
@@ -57,7 +57,7 @@ const updateRegistration = () => {
 
     if (localStorage.getItem(signupInputEl[0].value + "_brand") == null) {
 
-        if (signupInputEl[3].value.length == 10) {
+        if (signupInputEl[3].value.length == 10 && signupInputEl[3].value.charAt(0) >= 6) {
 
             const userData = {
                 brandCode: signupInputEl[0].value,
@@ -77,7 +77,7 @@ const updateRegistration = () => {
             swal("Good job!", "Sign Up Successfully Done !", "success");
         }
         else {
-            swal("Warning !", "Contact length must be 10 !", "warning");
+            swal("Warning !", "Contact length must be 10 and starts with greater then equal to 6 !", "warning");
         }
     }
     else {
@@ -88,7 +88,7 @@ const updateRegistration = () => {
 
 /* Start SignIn Form Coding */
 
-let signinForm = document.querySelector(".sigin-form");
+let signinForm = document.querySelector(".signin-form");
 let signinBtn = document.querySelector(".signin-btn");
 let brandCode = document.querySelector("#brand-code");
 let username = document.querySelector("#username");
@@ -98,23 +98,28 @@ let password = document.querySelector("#password");
 
 /* Start signin btn coding */
 
-signinBtn.addEventListener("click", ()=> {
+signinBtn.addEventListener("click", () => {
 
-    if(brandCode.value && username.value && password.value != "") {
+    if (brandCode.value && username.value && password.value != "") {
 
-        if(localStorage.getItem(brandCode.value + "_brand") != null) {
-            
+        if (localStorage.getItem(brandCode.value + "_brand") != null) {
+
             let allData = JSON.parse(localStorage.getItem(brandCode.value + "_brand"));
-            
-            if(allData.username == username.value) {
-                
-                if(allData.password == password.value) {
-                    
+
+            if (allData.username == username.value) {
+
+                if (allData.password == password.value) {
+
                     signinBtn.innerHTML = "Redirecting to dashboard...";
                     signinBtn.disabled = true;
 
                     setTimeout(() => {
                         window.location = ("../dashboard/dashboard.html");
+
+                        // set key and value and get data on dashboard page.
+                        sessionStorage.setItem("brandCode", brandCode.value);
+                        
+                        signinForm.reset("");
                     }, 3000);
                 }
                 else {
