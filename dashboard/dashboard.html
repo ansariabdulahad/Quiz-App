@@ -23,14 +23,18 @@
 
     <div class="side-nav">
         <div class="profile-box"></div>
-        <ul class="list-group">
+        <h4 id="profile-heading">Hello World</h4>
+        <ul class="list-group navbar-nav-scroll mb-5">
+            <li class="list-group-item"><i class="fa-solid fa-gauge"></i> Dashboard</li>
             <li class="list-group-item"><i class="fa fa-home"></i> Home</li>
-            <li class="list-group-item"><i class="fa fa-home"></i> Home</li>
-            <li class="list-group-item"><i class="fa fa-home"></i> Home</li>
-            <li class="list-group-item"><i class="fa fa-home"></i> Home</li>
-            <li class="list-group-item"><i class="fa fa-home"></i> Home</li>
+            <li class="list-group-item"><i class="fa-solid fa-address-card"></i> About Us</li>
+            <li class="list-group-item"><i class="fa-solid fa-handshake"></i> Portfolio</li>
+            <li class="list-group-item"><i class="fa-solid fa-code"></i> Developers</li>
+            <li class="list-group-item"><i class="fa-solid fa-address-book"></i> Contact</li>
+            <li class="list-group-item"><i class="fa-solid fa-calendar-minus"></i> Manual</li>
+            <li class="list-group-item"><i class="fa-solid fa-head-side-virus"></i> Site Info</li>
         </ul>
-        <button class="btn bg-danger">Logout <i class="fa-solid fa-right-from-bracket"></i></button>
+        <button class="btn bg-danger" id="logout-btn">Logout <i class="fa-solid fa-right-from-bracket"></i></button>
     </div>
 
     <!-- End side nav coding -->
@@ -41,11 +45,49 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-10 p-0">
-                <ul class="list-group">
+                <ul class="list-group brand-box">
                     <li class="list-group-item">
-                        <h2 id="brand-name"></h2>
+                        <h4 id="brand-name"></h4>
                     </li>
                 </ul>
+
+                <div class="container">
+                    <div class="row mt-3">
+                        <div class="col-md-4 teacher-box">
+                            <ul class="list-group">
+                                <li class="list-group-item">Teachers</li>
+                            </ul>
+
+                            <div class="content-box">
+                                <div class="number-box">
+                                    <h2>200</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 teacher-box">
+                            <ul class="list-group">
+                                <li class="list-group-item">Students</li>
+                            </ul>
+
+                            <div class="content-box">
+                                <div class="number-box">
+                                    <h2>3000</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 teacher-box">
+                            <ul class="list-group">
+                                <li class="list-group-item">Subjects</li>
+                            </ul>
+
+                            <div class="content-box">
+                                <div class="number-box">
+                                    <h2>10</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
