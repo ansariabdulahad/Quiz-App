@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,16 +13,47 @@
     <!-- Start JS Link -->
     <script src="../common/js/bootstrap.bundle.min.js"></script>
     <script src="../common/js/sweetalert.min.js"></script>
+    <script src="https://kit.fontawesome.com/178d8111b2.js" crossorigin="anonymous"></script>
     <!-- End JS Link -->
     <title>DashBoard</title>
 </head>
+
 <body>
-    <div class="container-fluid vh-100 bg-danger">
-        <h1>Welcome to dashboard page....</h1>
+    <!-- Start side nav coding -->
+
+    <div class="side-nav">
+        <div class="profile-box"></div>
+        <ul class="list-group">
+            <li class="list-group-item"><i class="fa fa-home"></i> Home</li>
+            <li class="list-group-item"><i class="fa fa-home"></i> Home</li>
+            <li class="list-group-item"><i class="fa fa-home"></i> Home</li>
+            <li class="list-group-item"><i class="fa fa-home"></i> Home</li>
+            <li class="list-group-item"><i class="fa fa-home"></i> Home</li>
+        </ul>
+        <button class="btn bg-danger">Logout <i class="fa-solid fa-right-from-bracket"></i></button>
     </div>
 
+    <!-- End side nav coding -->
+
+    <!-- Start main box coding -->
+
+    <div class="container-fluid main-box">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10 p-0">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h2 id="brand-name"></h2>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- End main box coding -->
 
     <!-- JS File Link -->
     <script src="../dashboard/js/dashboard.js"></script>
 </body>
+
 </html>
