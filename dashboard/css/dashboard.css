@@ -1,3 +1,5 @@
+/* Start scroll bar coding */
+
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -16,11 +18,19 @@
     background: #403899;
 }
 
+/* End scroll bar coding */
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+    font-family: cursive;
+}
+
+body {
+    background-color: #1b203d !important;
 }
 
 
@@ -104,10 +114,6 @@
 
 /* Start main box coding */
 
-body {
-    background-color: #1b203d !important;
-}
-
 .main-box .brand-box li {
     border-radius: 0 !important;
     border: none;
@@ -117,6 +123,7 @@ body {
     background-color: #5344f5;
     color: whitesmoke;
     box-shadow: 1px 1px 10px black;
+    margin-top: 2px;
 }
 
 .main-box .list-group li h2 {
@@ -157,3 +164,57 @@ body {
 }
 
 /* End main box coding */
+
+
+
+/* Start section two coding create subjects */
+
+.main-box .accordion .accordion-item {
+    border: none;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.main-box .accordion-header button {
+    background-color: #403899 !important;
+    color: whitesmoke;
+    /* border: none !important; */
+    box-shadow: 0px 0px 5px black;
+    box-shadow: none !important ;
+    border-radius: 0 !important;
+}
+
+.main-box .accordion #create-subject,
+.main-box .accordion .accordion-body {
+    background-color: #13102e;
+    color: whitesmoke;
+}
+
+.main-box .accordion .accordion-body button {
+    background-color: #5344f5;
+    color: white;
+    font-size: 18px;
+}
+
+.main-box .accordion .accordion-body button:hover {
+    background-color: #403899;
+    box-shadow: 0px 0px 5px #5344f5;
+}
+
+/* End section two coding create subjects */
+
+
+
+/* Start section three coding update and delete subjects */
+
+.main-box .visible-subject i {
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.main-box .visible-subject i:hover {
+    color: #5344f5;
+    box-shadow: 0px 0px 2px #5344f5;
+}
+
+/* End section three coding update and delete subjects */
