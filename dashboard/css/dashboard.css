@@ -33,6 +33,10 @@ body {
     background-color: #1b203d !important;
 }
 
+.error-msg {
+    padding: 18%;
+}
+
 
 /* Start side nav coding */
 
