@@ -22,6 +22,7 @@ else {
 
     document.body.innerHTML = "<h1>404 Error !" + "<br>" + "Page Not Found !</h1>";
     document.body.style.color = "red";
+    document.body.classList = "error-msg";
 
     setTimeout(() => {
         swal("Unauthorised Person !", "Login Again....!", "error");
@@ -65,6 +66,8 @@ logoutBtn.addEventListener("click", (e) => {
 
 /* Start section Two coding teacher box */
 
+let allSubject = [];
+
 let subjectEl = document.querySelector(".subject");
 let createSubBtn = document.querySelector(".create-subject-btn");
 
@@ -72,27 +75,125 @@ let createSubBtn = document.querySelector(".create-subject-btn");
 createSubBtn.onclick = function (e) {
     e.preventDefault();
 
-    newSubject();
+    if (subjectEl.value != "") {
+
+        newSubject(); // creating a subject
+        subjectEl.value = "";
+        swal("Congratulations !", "Subject is created successfully !", "success");
+    }
+    else {
+        swal("Subject name is empty !", "Please fill the subject name !", "warning");
+    }
+
+    updateSubject(); // updating a subject in local storage
 }
+
 
 // newSubject function coding
 let visibleSubject = document.querySelector(".visible-subject");
 
-const newSubject = () => {
+const newSubject = (subject) => {
+
+    let subjectName = subjectEl.value;
+
+    // condition for get the subject name from local storage
+    if (subject) {
+
+        subjectName = subject.subjectName;
+    }
 
     visibleSubject.innerHTML += `
     
-    <div class="d-flex justify-content-between">
-        <h5>${subjectEl.value}</h5>
+    <div class="d-flex justify-content-between subject-box">
+        <h5>${subjectName}</h5>
 
         <div>
             <i class="mx-2 fa-solid fa-pen-to-square"></i>
             <i class="mx-2 fa-solid fa-floppy-disk d-none"></i>
-            <i class="mx-2 fa-solid fa-trash text-danger"></i>
+            <i class="mx-2 fa-solid fa-trash text-danger del-subject"></i>
         </div>
     </div>
     
     `;
+
+    // Start delete icon coding
+
+    let delBtn = document.querySelectorAll(".del-subject");
+
+    let i;
+    for (i = 0; i < delBtn.length; i++) {
+
+        delBtn[i].onclick = function () {
+
+            let parent = this.parentElement.parentElement;
+
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        parent.remove();
+                        updateSubject();
+
+                        swal("Poof! Your imaginary file has been deleted!", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
+        }
+    }
+    
+    // End delete icon coding
 }
 
+// getSubject function coding.
+const getSubject = () => {
+
+    if (localStorage.getItem(brandCodeEl + "_allSubject") != null) {
+
+        allSubject = JSON.parse(localStorage.getItem(brandCodeEl + "_allSubject"));
+
+        allSubject.forEach((subject, index) => {
+
+            newSubject(subject);
+        })
+    }
+}
+
+getSubject(); // get subject from local storage
+
 /* End section Two coding teacher box */
+
+
+
+/* Start section two and three coding */
+
+// updateSubject function coding.
+const updateSubject = () => {
+
+    let i;
+    allSubject = [];
+
+    let subjectBox = visibleSubject.querySelectorAll(".subject-box");
+
+    for (i = 0; i < subjectBox.length; i++) {
+
+        let h5 = subjectBox[i].querySelectorAll("h5");
+
+        allSubject.push({
+
+            subjectName: h5[0].innerHTML
+        });
+    }
+
+    localStorage.setItem(brandCodeEl + "_allSubject", JSON.stringify(allSubject));
+}
+
+/* End section two and three coding */
