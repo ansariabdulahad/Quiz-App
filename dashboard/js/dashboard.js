@@ -92,7 +92,7 @@ createSubBtn.onclick = function (e) {
 // newSubject function coding
 let visibleSubject = document.querySelector(".visible-subject");
 
-const newSubject = (subject) => {
+const newSubject = (subject, index) => {
 
     let subjectName = subjectEl.value;
 
@@ -105,11 +105,11 @@ const newSubject = (subject) => {
     visibleSubject.innerHTML += `
     
     <div class="d-flex justify-content-between subject-box">
-        <h5>${subjectName}</h5>
+        <h5 index = "${index}">${subjectName}</h5>
 
         <div>
-            <i class="mx-2 fa-solid fa-pen-to-square"></i>
-            <i class="mx-2 fa-solid fa-floppy-disk d-none"></i>
+            <i class="mx-2 fa-solid fa-pen-to-square edit-btn"></i>
+            <i class="mx-2 fa-solid fa-floppy-disk d-none save-btn"></i>
             <i class="mx-2 fa-solid fa-trash text-danger del-subject"></i>
         </div>
     </div>
@@ -149,8 +149,45 @@ const newSubject = (subject) => {
                 });
         }
     }
-    
+
     // End delete icon coding
+
+
+    /* Start Edit btn coding */
+
+    let allEditBtn = document.querySelectorAll(".edit-btn");
+
+    for (i = 0; i < allEditBtn.length; i++) {
+
+        allEditBtn[i].addEventListener("click", (e) => {
+
+            let parent = e.target.parentElement.parentElement;
+            let h5 = parent.querySelector("h5");
+            let saveBtn = parent.querySelector(".save-btn");
+
+            e.target.classList.add("d-none");
+            saveBtn.classList.remove("d-none");
+
+            h5.contentEditable = true;
+            // h5.focus();
+            h5.style.border = "1px solid red";
+
+            // saveBtn coding
+            saveBtn.onclick = function () {
+
+                let id = h5.getAttribute("index");
+                let editedSub = h5.innerHTML;
+
+                updateSubject(editedSub, id); // update the subject after clicking on save
+
+                e.target.classList.remove("d-none");
+                saveBtn.classList.add("d-none");
+                h5.style.border = "none";
+            }
+        })
+    }
+
+    /* End Edit btn coding */
 }
 
 // getSubject function coding.
@@ -162,7 +199,7 @@ const getSubject = () => {
 
         allSubject.forEach((subject, index) => {
 
-            newSubject(subject);
+            newSubject(subject, index);
         })
     }
 }
@@ -176,21 +213,33 @@ getSubject(); // get subject from local storage
 /* Start section two and three coding */
 
 // updateSubject function coding.
-const updateSubject = () => {
+const updateSubject = (editedSub, id) => {
 
-    let i;
-    allSubject = [];
+    if (editedSub != undefined && id != undefined) {
 
-    let subjectBox = visibleSubject.querySelectorAll(".subject-box");
+        allSubject[id] = {
 
-    for (i = 0; i < subjectBox.length; i++) {
+            subjectName: editedSub
+        }
 
-        let h5 = subjectBox[i].querySelectorAll("h5");
+        swal("Updated !", "Your subject is updated successfully !", "success")
+    }
+    else {
 
-        allSubject.push({
+        let i;
+        allSubject = [];
 
-            subjectName: h5[0].innerHTML
-        });
+        let subjectBox = visibleSubject.querySelectorAll(".subject-box");
+
+        for (i = 0; i < subjectBox.length; i++) {
+
+            let h5 = subjectBox[i].querySelectorAll("h5");
+
+            allSubject.push({
+
+                subjectName: h5[0].innerHTML
+            });
+        }
     }
 
     localStorage.setItem(brandCodeEl + "_allSubject", JSON.stringify(allSubject));
