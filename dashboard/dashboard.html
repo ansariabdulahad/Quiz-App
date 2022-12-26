@@ -21,7 +21,10 @@
 <body>
     <!-- Start side nav coding -->
 
-    <div class="side-nav">
+    <button class="accordion-button text-white side-nav-btn btn p-2 fs-4 opacity-75" data-bs-toggle="collapse"
+        data-bs-target="#side-nav"><i class="fa fa-bars"></i></button>
+
+    <div class="side-nav" id="side-nav">
         <div class="profile-box"></div>
         <h4 id="profile-heading">Hello World</h4>
         <ul class="list-group navbar-nav-scroll mb-5">
@@ -42,13 +45,16 @@
     <!-- Start main box coding -->
 
     <div class="container-fluid main-box">
-        <div class="row">
+
+        <div class="row mb-3">
+
             <div class="col-md-2"></div>
+
             <div class="col-md-10 p-0">
 
                 <!-- Start brand name coding -->
                 <ul class="list-group brand-box">
-                    <li class="list-group-item">
+                    <li class="list-group-item text-center">
                         <h4 id="brand-name"></h4>
                     </li>
                 </ul>
@@ -58,7 +64,7 @@
 
                     <!-- Start section one coding teacher box -->
                     <div class="row mt-4">
-                        <div class="col-md-4 teacher-box">
+                        <div class="col-md-4 teacher-box mb-2">
                             <ul class="list-group">
                                 <li class="list-group-item">Total Teachers</li>
                             </ul>
@@ -69,7 +75,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 teacher-box">
+                        <div class="col-md-4 teacher-box mb-2">
                             <ul class="list-group">
                                 <li class="list-group-item">Total Students</li>
                             </ul>
@@ -80,7 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 teacher-box">
+                        <div class="col-md-4 teacher-box mb-2">
                             <ul class="list-group">
                                 <li class="list-group-item">Total Subjects</li>
                             </ul>
@@ -103,17 +109,19 @@
                                 <li class="list-group-item">Create Subject</li>
                             </ul>
 
-                            <div class="accordion mt-1">
+                            <div class="accordion mt-1 mb-3">
                                 <div class="accordion-item">
                                     <div class="accordion-header">
-                                        <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#create-subject">Click to create a subject</button>
+                                        <button class="accordion-button" data-bs-toggle="collapse"
+                                            data-bs-target="#create-subject">Click to create a subject</button>
                                     </div>
 
                                     <div class="accordion-collapse collapse" id="create-subject">
                                         <div class="accordion-body">
-                                            
+
                                             <form action="#">
-                                                <input type="text" placeholder="Enter subject name" class="form-control subject bg-black bg-opacity-75 text-white">
+                                                <input type="text" placeholder="Enter subject name"
+                                                    class="form-control subject bg-black bg-opacity-75 text-white">
                                                 <div align="end">
                                                     <button class="btn mt-3 create-subject-btn">Create</button>
                                                 </div>
@@ -133,35 +141,58 @@
                             <div class="accordion mt-1">
                                 <div class="accordion-item">
                                     <div class="accordion-header">
-                                        <button class="accordion-button bg-black text-white" data-bs-toggle="collapse" data-bs-target="#create-question">Click to create an MCQ</button>
+                                        <button class="accordion-button bg-black text-white" data-bs-toggle="collapse"
+                                            data-bs-target="#create-question">Click to create an MCQ</button>
                                     </div>
 
                                     <div class="accordion-collapse collapse" id="create-question">
-                                        <div class="accordion-body mb-4">
-                                            
-                                            <form action="#">
-                                                
-                                                <select name="" id="" class="form-select mb-5 bg-dark bg-opacity-75 text-white">
+                                        <div class="accordion-body mb-3">
+
+                                            <form action="#" class="question-form">
+
+                                                <select id="choose-subject"
+                                                    class="form-select mb-5 bg-dark bg-opacity-75 text-white">
                                                     <option value="choose subject">Choose Subjects</option>
                                                 </select>
 
-                                                <label for="question"><i class="fa-solid fa-right-long"></i> MCQ Question</label>
-                                                <input type="text" id="question" class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white" placeholder="Enter Your MCQ Question Here !">
+                                                <label for="question"><i class="fa-solid fa-right-long"></i> MCQ
+                                                    Question</label>
+                                                <input type="text" required id="question"
+                                                    class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white"
+                                                    placeholder="Enter Your MCQ Question Here !">
 
-                                                <label for="option-one"><i class="fa-solid fa-caret-right"></i> Option - A</label>
-                                                <input type="text" id="option-one" class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white" placeholder="Enter option one">
+                                                <label for="option-one"><i class="fa-solid fa-caret-right"></i> Option -
+                                                    A</label>
+                                                <input type="text" required id="option-one"
+                                                    class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white"
+                                                    placeholder="Enter option one">
 
-                                                <label for="option-two"><i class="fa-solid fa-caret-right"></i> Option - B</label>
-                                                <input type="text" id="option-two" class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white" placeholder="Enter option two">
+                                                <label for="option-two"><i class="fa-solid fa-caret-right"></i> Option -
+                                                    B</label>
+                                                <input type="text" required id="option-two"
+                                                    class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white"
+                                                    placeholder="Enter option two">
 
-                                                <label for="option-three"><i class="fa-solid fa-caret-right"></i> Option - C</label>
-                                                <input type="text" id="option-three" class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white" placeholder="Enter option three">
+                                                <label for="option-three"><i class="fa-solid fa-caret-right"></i> Option
+                                                    - C</label>
+                                                <input type="text" required id="option-three"
+                                                    class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white"
+                                                    placeholder="Enter option three">
 
-                                                <label for="option-four"><i class="fa-solid fa-caret-right"></i> Option - D</label>
-                                                <input type="text" id="option-four" class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white" placeholder="Enter option four">
+                                                <label for="option-four"><i class="fa-solid fa-caret-right"></i> Option
+                                                    - D</label>
+                                                <input type="text" required id="option-four"
+                                                    class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white"
+                                                    placeholder="Enter option four">
+
+                                                <label for="correct-option"><i class="fa-solid fa-right-long"></i>
+                                                    Correct Option</label>
+                                                <input type="text" required id="correct-option"
+                                                    class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white"
+                                                    placeholder="Enter correct option">
 
                                                 <div align="end">
-                                                    <button class="btn">Create MCQ</button>
+                                                    <button class="btn create-question-btn">Create MCQ</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -174,8 +205,8 @@
                     <!-- End section two coding create subjects -->
 
                     <!-- Start section three coding update and delete subjects -->
-                    
-                    <div class="row mt-4">
+
+                    <div class="row mt-3">
 
                         <!-- first column -->
                         <div class="col-md-4 mb-3">
@@ -186,16 +217,17 @@
                             <div class="accordion mt-1">
                                 <div class="accordion-item">
                                     <div class="accordion-header">
-                                        <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#update-subject">Click to update & delete a subject</button>
+                                        <button class="accordion-button" data-bs-toggle="collapse"
+                                            data-bs-target="#update-subject">Click to update & delete a subject</button>
                                     </div>
 
                                     <div class="accordion-collapse collapse" id="update-subject">
                                         <div class="accordion-body">
-                                            
+
                                             <div class="visible-subject">
-                                                
+
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -205,43 +237,28 @@
                         <!-- second column -->
                         <div class="col-md-8">
                             <ul class="list-group teacher-box">
-                                <li class="list-group-item">Create MCQ for a subject</li>
+                                <li class="list-group-item">Upadte & Delete MCQ's</li>
                             </ul>
 
                             <div class="accordion mt-1">
                                 <div class="accordion-item">
                                     <div class="accordion-header">
-                                        <button class="accordion-button bg-black text-white" data-bs-toggle="collapse" data-bs-target="#create-question">Click to create an MCQ</button>
+                                        <button class="accordion-button bg-black text-white" data-bs-toggle="collapse"
+                                            data-bs-target="#select-question">Click to update & delete MCQ's</button>
                                     </div>
 
-                                    <div class="accordion-collapse collapse" id="create-question">
-                                        <div class="accordion-body mb-4">
-                                            
-                                            <form action="#">
+                                    <div class="accordion-collapse collapse" id="select-question">
+                                        <div class="accordion-body mb-3">
+
+                                            <select name="" id="select-subject"
+                                                class="form-select mb-5 bg-dark bg-opacity-75 text-white">
+                                                <option value="choose subject">Choose Subjects</option>
+                                            </select>
+
+                                            <div class="visible-question">
                                                 
-                                                <select name="" id="" class="form-select mb-5 bg-dark bg-opacity-75 text-white">
-                                                    <option value="choose subject">Choose Subjects</option>
-                                                </select>
+                                            </div>
 
-                                                <label for="question"><i class="fa-solid fa-right-long"></i> MCQ Question</label>
-                                                <input type="text" id="question" class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white" placeholder="Enter Your MCQ Question Here !">
-
-                                                <label for="option-one"><i class="fa-solid fa-caret-right"></i> Option - A</label>
-                                                <input type="text" id="option-one" class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white" placeholder="Enter option one">
-
-                                                <label for="option-two"><i class="fa-solid fa-caret-right"></i> Option - B</label>
-                                                <input type="text" id="option-two" class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white" placeholder="Enter option two">
-
-                                                <label for="option-three"><i class="fa-solid fa-caret-right"></i> Option - C</label>
-                                                <input type="text" id="option-three" class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white" placeholder="Enter option three">
-
-                                                <label for="option-four"><i class="fa-solid fa-caret-right"></i> Option - D</label>
-                                                <input type="text" id="option-four" class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white" placeholder="Enter option four">
-
-                                                <div align="end">
-                                                    <button class="btn">Create MCQ</button>
-                                                </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>

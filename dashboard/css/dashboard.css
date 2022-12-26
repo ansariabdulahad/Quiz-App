@@ -40,6 +40,15 @@ body {
 
 /* Start side nav coding */
 
+.side-nav-btn {
+    z-index: 1000 !important;
+    position: fixed !important;
+    top: 10px !important;
+    right: 10px !important;
+    width: fit-content !important;
+    background-color: red !important;
+}
+
 .side-nav {
     position: fixed;
     top: 0;
@@ -211,12 +220,12 @@ body {
 
 /* Start section three coding update and delete subjects */
 
-.main-box .visible-subject i {
+.main-box i {
     cursor: pointer;
     font-size: 22px;
 }
 
-.main-box .visible-subject i:hover {
+.main-box i:hover {
     color: #5344f5;
     box-shadow: 0px 0px 2px #5344f5;
 }

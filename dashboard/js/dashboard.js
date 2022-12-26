@@ -245,4 +245,231 @@ const updateSubject = (editedSub, id) => {
     localStorage.setItem(brandCodeEl + "_allSubject", JSON.stringify(allSubject));
 }
 
+
+// Start MCQ btn and Option coding
+
+// Start MCQ Section coding
+let chooseSubject = document.querySelector("#choose-subject");
+
+// Update & delete mcq var
+let selectSubject = document.querySelector("#select-subject");
+
+// chooseSubjectFunc coding
+const chooseSubjectFunc = () => {
+
+    allSubject.forEach((subject, index) => {
+
+        chooseSubject.innerHTML += `
+        
+        <option value="${subject.subjectName}"> ${subject.subjectName} </option>
+
+        `;
+
+        // Update & delete mcq section coding
+        selectSubject.innerHTML += `
+        
+        <option value="${subject.subjectName}"> ${subject.subjectName} </option>
+
+        `;
+    })
+}
+
+chooseSubjectFunc(); // call chooseSubjectFunc on window load
+
+let allQuestion = []; // array to store MCQs.
+let subject;
+
+let questionForm = document.querySelector(".question-form");
+let allQuestionInput = questionForm.querySelectorAll("input");
+let firstOption = chooseSubject.querySelectorAll("option")[1];
+
+// Start checkSubject function coding
+const checkSubject = () => {
+
+    if (chooseSubject.value == "choose subject") {
+
+        subject = firstOption.value;
+    }
+    else {
+
+        subject = chooseSubject.value;
+    }
+
+}
+
+checkSubject(); // calling 
+
+// start onchange coding on chooseSubject
+chooseSubject.addEventListener("change", () => {
+
+    checkSubject();
+
+    checkSubjectKey();
+})
+
+// createQuestionBtn coding
+questionForm.onsubmit = (e) => {
+
+    e.preventDefault();
+
+    createQuestionFunc();
+
+    // empty input fields of mcq
+    if (chooseSubject.value == "choose subject") {
+
+    }
+    else {
+
+        chooseSubject.value = "choose subject";
+
+        allQuestionInput[0].value = "";
+        allQuestionInput[1].value = "";
+        allQuestionInput[2].value = "";
+        allQuestionInput[3].value = "";
+        allQuestionInput[4].value = "";
+        allQuestionInput[5].value = "";
+    }
+}
+
+// createQuestionFunc coding.
+const createQuestionFunc = () => {
+
+    if (chooseSubject.value != "choose subject") {
+
+        updateQuestion();
+    }
+    else {
+        swal("Choose Subject !", "Please choose subject name first !", "warning");
+    }
+}
+
+const checkSubjectKey = () => {
+
+    // get all MCQs from the local storage
+    if (localStorage.getItem(brandCodeEl + "_" + subject + "_question") != null) {
+
+        allQuestion = JSON.parse(localStorage.getItem(brandCodeEl + "_" + subject + "_question"));
+    }
+    else {
+
+        allQuestion = [];
+    }
+}
+
+checkSubjectKey(); // calling
+
+// updateQuestion function coding
+const updateQuestion = () => {
+
+    allQuestion.push({
+
+        question: allQuestionInput[0].value,
+        optionOne: allQuestionInput[1].value,
+        optionTwo: allQuestionInput[2].value,
+        optionThree: allQuestionInput[3].value,
+        optionFour: allQuestionInput[4].value,
+        correctAnswer: allQuestionInput[5].value,
+    })
+
+    localStorage.setItem(brandCodeEl + "_" + chooseSubject.value + "_question", JSON.stringify(allQuestion));
+
+    swal("Created !", "MCQ is created successfully !", "success");
+}
+
+// Start returning mcqs from local storage coding
+let newQuestions = [];
+
+let visibleQuestion = document.querySelector(".visible-question");
+
+selectSubject.addEventListener("change", () => {
+
+    if (localStorage.getItem(brandCodeEl + "_" + selectSubject.value + "_question") != null) {
+
+        newQuestions = JSON.parse(localStorage.getItem(brandCodeEl + "_" + selectSubject.value + "_question"));
+
+        visibleQuestion.innerHTML = "";
+
+        newQuestionFunc(); // calling
+
+        if(newQuestions.length == 0) {
+
+            visibleQuestion.innerHTML = '<h4><b style = "color : red;">No MCQ\'s are present related to this subject !</b></h4>'
+        }
+    }
+    else {
+
+        visibleQuestion.innerHTML = '<h4><b style = "color : red;">No MCQ\'s are present related to this subject !</b></h4>'
+    }
+})
+
+
+// start newQuestionFunc function coding
+const newQuestionFunc = () => {
+
+    newQuestions.forEach((question, index) => {
+
+        visibleQuestion.innerHTML += `
+        
+        <div index = "${index}">
+            <div class="question-list d-flex justify-content-between">
+                <h4>${index + 1}) ${question.question}</h4>
+
+                <div>
+                    <i class="mx-3 fa fa-edit"></i>
+                    <i class="mx-3 fa fa-save"></i>
+                    <i class="mx-3 fa fa-trash text-danger del-btn"></i>
+                </div>
+
+            </div>
+
+            <div class="d-flex flex-column mt-4 mb-4">
+                <span class="mb-2">A) ${question.optionOne}</span>
+                <span class="mb-2">B) ${question.optionTwo}</span>
+                <span class="mb-2">C) ${question.optionThree}</span>
+                <span class="mb-2">D) ${question.optionFour}</span>
+                <span class="mb-2 bg-info p-2 text-black rounded-3"><i class="fa-solid fa-right-long"></i> ${question.correctAnswer}</span>
+            </div>
+        </div>
+        
+        `;
+    });
+
+
+    // Start delete mcq btn coding
+    let allDelBtn = visibleQuestion.querySelectorAll(".del-btn");
+
+    let i;
+    for (i = 0; i < allDelBtn.length; i++) {
+
+        allDelBtn[i].onclick = function () {
+
+            let parent = this.parentElement.parentElement.parentElement;
+            let index = parent.getAttribute("index");
+
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        newQuestions.splice(index, 1); // empty array
+                        localStorage.setItem(brandCodeEl + "_" + selectSubject.value + "_question", JSON.stringify(newQuestions));
+                        parent.remove();
+
+                        swal("Poof! Your imaginary file has been deleted!", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
+
+        }
+    }
+}
+
 /* End section two and three coding */
