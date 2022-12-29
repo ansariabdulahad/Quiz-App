@@ -9,6 +9,31 @@ profileBox.addEventListener("click", () => {
 
 /* End profile picture coding */
 
+
+/* Start side navbar coding */
+
+var togglerBtns = document.querySelectorAll(".toggler-icon");
+var sideNav = document.querySelector(".side-nav");
+
+togglerBtns[0].onclick = ()=> {
+
+    sideNav.classList.add("active");
+
+    togglerBtns[0].classList.add("d-none");
+    togglerBtns[1].classList.remove("d-none");
+}
+
+togglerBtns[1].onclick = ()=> {
+
+    sideNav.classList.remove("active");
+
+    togglerBtns[0].classList.remove("d-none");
+    togglerBtns[1].classList.add("d-none");
+}
+
+/* End side navbar coding */
+
+
 /* Start main box coding */
 
 let brandCodeEl;
@@ -86,6 +111,9 @@ createSubBtn.onclick = function (e) {
     }
 
     updateSubject(); // updating a subject in local storage
+
+    chooseSubjectFunc(); // calling
+    
 }
 
 
@@ -138,7 +166,10 @@ const newSubject = (subject, index) => {
                     if (willDelete) {
 
                         parent.remove();
+
                         updateSubject();
+
+                        chooseSubjectFunc();
 
                         swal("Poof! Your imaginary file has been deleted!", {
                             icon: "success",
@@ -257,6 +288,9 @@ let selectSubject = document.querySelector("#select-subject");
 // chooseSubjectFunc coding
 const chooseSubjectFunc = () => {
 
+    chooseSubject.innerHTML = "<option value='choose subject'>Choose Subjects</option>";
+    selectSubject.innerHTML = "<option value='choose subject'>Choose Subjects</option>";
+
     allSubject.forEach((subject, index) => {
 
         chooseSubject.innerHTML += `
@@ -359,21 +393,39 @@ const checkSubjectKey = () => {
 checkSubjectKey(); // calling
 
 // updateQuestion function coding
-const updateQuestion = () => {
+const updateQuestion = (index, question, opOne, opTwo, opThree, opFour, opFive) => {
 
-    allQuestion.push({
+    if (index != undefined && question != undefined) {
 
-        question: allQuestionInput[0].value,
-        optionOne: allQuestionInput[1].value,
-        optionTwo: allQuestionInput[2].value,
-        optionThree: allQuestionInput[3].value,
-        optionFour: allQuestionInput[4].value,
-        correctAnswer: allQuestionInput[5].value,
-    })
+        allQuestion[index] = {
 
-    localStorage.setItem(brandCodeEl + "_" + chooseSubject.value + "_question", JSON.stringify(allQuestion));
+            question: question,
+            optionOne: opOne,
+            optionTwo: opTwo,
+            optionThree: opThree,
+            opFour: opFour,
+            correctAnswer: opFive
+        }
 
-    swal("Created !", "MCQ is created successfully !", "success");
+        localStorage.setItem(brandCodeEl + "_" + selectSubject.value + "_question", JSON.stringify(allQuestion));
+
+    }
+    else {
+
+        allQuestion.push({
+
+            question: allQuestionInput[0].value,
+            optionOne: allQuestionInput[1].value,
+            optionTwo: allQuestionInput[2].value,
+            optionThree: allQuestionInput[3].value,
+            optionFour: allQuestionInput[4].value,
+            correctAnswer: allQuestionInput[5].value,
+        })
+
+        localStorage.setItem(brandCodeEl + "_" + chooseSubject.value + "_question", JSON.stringify(allQuestion));
+
+        swal("Created !", "MCQ is created successfully !", "success");
+    }
 }
 
 // Start returning mcqs from local storage coding
@@ -391,7 +443,7 @@ selectSubject.addEventListener("change", () => {
 
         newQuestionFunc(); // calling
 
-        if(newQuestions.length == 0) {
+        if (newQuestions.length == 0) {
 
             visibleQuestion.innerHTML = '<h4><b style = "color : red;">No MCQ\'s are present related to this subject !</b></h4>'
         }
@@ -415,8 +467,8 @@ const newQuestionFunc = () => {
                 <h4>${index + 1}) ${question.question}</h4>
 
                 <div>
-                    <i class="mx-3 fa fa-edit"></i>
-                    <i class="mx-3 fa fa-save"></i>
+                    <i class="mx-3 fa fa-edit edit-btn"></i>
+                    <i class="mx-3 fa fa-save d-none update-btn"></i>
                     <i class="mx-3 fa fa-trash text-danger del-btn"></i>
                 </div>
 
@@ -438,7 +490,7 @@ const newQuestionFunc = () => {
     // Start delete mcq btn coding
     let allDelBtn = visibleQuestion.querySelectorAll(".del-btn");
 
-    let i;
+    let i, j;
     for (i = 0; i < allDelBtn.length; i++) {
 
         allDelBtn[i].onclick = function () {
@@ -468,6 +520,93 @@ const newQuestionFunc = () => {
                     }
                 });
 
+        }
+    }
+
+
+    // Start allEditbtn mcq btn coding
+    let allEditBtn = visibleQuestion.querySelectorAll(".edit-btn");
+
+    for (i = 0; i < allEditBtn.length; i++) {
+
+        allEditBtn[i].onclick = function () {
+
+            let parent = this.parentElement.parentElement.parentElement;
+            let updateBtn = parent.querySelector(".update-btn");
+            let h4 = parent.querySelector("h4");
+            let index = +parent.getAttribute("index");
+
+            this.classList.add("d-none");
+            updateBtn.classList.remove("d-none");
+
+            h4.contentEditable = true;
+            h4.focus();
+
+            let span = parent.querySelectorAll("span");
+
+            for (j = 0; j < span.length; j++) {
+
+                span[j].style.border = '1px solid #5344f5';
+                span[j].contentEditable = true;
+            }
+
+            // start update mcq btn coding
+            updateBtn.onclick = function () {
+
+                let question = h4.innerHTML.replace(`${index + 1}) `, "");
+                let opOne = span[0].innerHTML.replace("A) ", "");
+                let opTwo = span[1].innerHTML.replace("B) ", "");
+                let opThree = span[2].innerHTML.replace("C) ", "");
+                let opFour = span[3].innerHTML.replace("D) ", "");
+                let opFive = span[4].innerHTML.replace('<i class="fa-solid fa-right-long"></i> ', "");
+
+                swal({
+                    title: "Are you sure?",
+                    text: "Once updated, you will not be able to recover this MCQ!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willUpdated) => {
+                        if (willUpdated) {
+
+                            //calling updatequestion
+                            updateQuestion(index, question, opOne, opTwo, opThree, opFour, opFive);
+
+                            // revert the editable functionality
+                            h4.contentEditable = false;
+
+                            for(j = 0; j < span.length; j++) {
+
+                                span[j].style.border = "none";
+                                span[j].contentEditable = false;
+                            }
+
+                            updateBtn.classList.add("d-none");
+                            allEditBtn[index].classList.remove("d-none");
+
+                            swal("Poof! Your MCQ has been updated!", {
+                                icon: "success",
+                            });
+
+                        } else {
+
+                            // revert the editable functionality
+                            h4.contentEditable = false;
+
+                            for(j = 0; j < span.length; j++) {
+
+                                span[j].style.border = "none";
+                                span[j].contentEditable = false;
+                            }
+
+                            updateBtn.classList.add("d-none");
+                            allEditBtn[index].classList.remove("d-none");
+
+                            swal("Your MCQ is safe!");
+                        }
+                    });
+            }
         }
     }
 }

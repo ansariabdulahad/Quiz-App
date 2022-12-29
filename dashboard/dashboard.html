@@ -21,8 +21,11 @@
 <body>
     <!-- Start side nav coding -->
 
-    <button class="accordion-button text-white side-nav-btn btn p-2 fs-4 opacity-75" data-bs-toggle="collapse"
-        data-bs-target="#side-nav"><i class="fa fa-bars"></i></button>
+    <div class="toggler-box">
+
+        <i class="fa-solid fa-bars toggler-icon"></i>
+        <i class="fa-solid fa-xmark d-none toggler-icon"></i>
+    </div>
 
     <div class="side-nav" id="side-nav">
         <div class="profile-box"></div>
@@ -48,9 +51,9 @@
 
         <div class="row mb-3">
 
-            <div class="col-md-2"></div>
+            <div class="col-md-0 col-lg-2"></div>
 
-            <div class="col-md-10 p-0">
+            <div class="col-md-12 col-lg-10 p-0">
 
                 <!-- Start brand name coding -->
                 <ul class="list-group brand-box">
@@ -60,7 +63,7 @@
                 </ul>
                 <!-- end brand name coding -->
 
-                <div class="container">
+                <div class="container-fluid">
 
                     <!-- Start section one coding teacher box -->
                     <div class="row mt-4">
@@ -135,7 +138,7 @@
                         <!-- second column -->
                         <div class="col-md-8">
                             <ul class="list-group teacher-box">
-                                <li class="list-group-item">Create MCQ for a subject</li>
+                                <li class="list-group-item">Create MCQ</li>
                             </ul>
 
                             <div class="accordion mt-1">
@@ -211,14 +214,14 @@
                         <!-- first column -->
                         <div class="col-md-4 mb-3">
                             <ul class="list-group teacher-box">
-                                <li class="list-group-item">All subjects are here !</li>
+                                <li class="list-group-item">All subjects</li>
                             </ul>
 
                             <div class="accordion mt-1">
                                 <div class="accordion-item">
                                     <div class="accordion-header">
                                         <button class="accordion-button" data-bs-toggle="collapse"
-                                            data-bs-target="#update-subject">Click to update & delete a subject</button>
+                                            data-bs-target="#update-subject">Click to update & delete</button>
                                     </div>
 
                                     <div class="accordion-collapse collapse" id="update-subject">
@@ -256,7 +259,7 @@
                                             </select>
 
                                             <div class="visible-question">
-                                                
+
                                             </div>
 
                                         </div>
