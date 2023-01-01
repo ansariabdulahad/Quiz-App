@@ -455,6 +455,66 @@ selectSubject.addEventListener("change", () => {
 })
 
 
+// Start user registration coding
+
+var registrationData = [];
+
+var registrationForm = document.querySelector(".registration-form");
+var allRegInput = registrationForm.querySelectorAll("input");
+var userType = registrationForm.querySelector("select");
+var address = registrationForm.querySelector("textarea");
+
+
+// registration form onsubmit coding
+
+registrationForm.onsubmit = function(event) {
+    
+    event.preventDefault();
+
+    registrationFunc();
+}
+
+
+// get registered data from the session storage 
+
+if(localStorage.getItem(brandCodeEl + "_registrationData") != null) {
+
+    registrationData = JSON.parse(localStorage.getItem(brandCodeEl + "_registrationData"));
+}
+
+
+// registration function coding
+
+const registrationFunc = () => {
+    
+    if(userType.value != "choose type") {
+
+        registrationData.push({
+
+            userType : userType.value,
+            name : allRegInput[0].value,
+            fatherName : allRegInput[1].value,
+            dob : allRegInput[2].value,
+            mobile : allRegInput[3].value,
+            enrollment : allRegInput[4].value,
+            password : allRegInput[5].value,
+            address : address.value
+    
+        })
+    
+        localStorage.setItem(brandCodeEl + "_registrationData", JSON.stringify(registrationData));
+
+        swal("Congratulations !", "Registration done successfully !", "success");
+
+        registrationForm.reset("");
+    }
+    else {
+
+        swal("Select Type !", "Please choose a user type !", "warning");
+    }
+}
+
+
 // start newQuestionFunc function coding
 const newQuestionFunc = () => {
 
