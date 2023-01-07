@@ -15,7 +15,7 @@ profileBox.addEventListener("click", () => {
 var togglerBtns = document.querySelectorAll(".toggler-icon");
 var sideNav = document.querySelector(".side-nav");
 
-togglerBtns[0].onclick = ()=> {
+togglerBtns[0].onclick = () => {
 
     sideNav.classList.add("active");
 
@@ -23,7 +23,7 @@ togglerBtns[0].onclick = ()=> {
     togglerBtns[1].classList.remove("d-none");
 }
 
-togglerBtns[1].onclick = ()=> {
+togglerBtns[1].onclick = () => {
 
     sideNav.classList.remove("active");
 
@@ -113,7 +113,7 @@ createSubBtn.onclick = function (e) {
     updateSubject(); // updating a subject in local storage
 
     chooseSubjectFunc(); // calling
-    
+
 }
 
 
@@ -224,9 +224,9 @@ const newSubject = (subject, index) => {
 // getSubject function coding.
 const getSubject = () => {
 
-    if (localStorage.getItem(brandCodeEl + "_allSubject") != null) {
+    if (localStorage.getItem(brandCodeEl + "_brand" + "_allSubject") != null) {
 
-        allSubject = JSON.parse(localStorage.getItem(brandCodeEl + "_allSubject"));
+        allSubject = JSON.parse(localStorage.getItem(brandCodeEl + "_brand" + "_allSubject"));
 
         allSubject.forEach((subject, index) => {
 
@@ -273,7 +273,7 @@ const updateSubject = (editedSub, id) => {
         }
     }
 
-    localStorage.setItem(brandCodeEl + "_allSubject", JSON.stringify(allSubject));
+    localStorage.setItem(brandCodeEl + "_brand" + "_allSubject", JSON.stringify(allSubject));
 }
 
 
@@ -380,9 +380,9 @@ const createQuestionFunc = () => {
 const checkSubjectKey = () => {
 
     // get all MCQs from the local storage
-    if (localStorage.getItem(brandCodeEl + "_" + subject + "_question") != null) {
+    if (localStorage.getItem(brandCodeEl + "_brand" + "_" + subject + "_question") != null) {
 
-        allQuestion = JSON.parse(localStorage.getItem(brandCodeEl + "_" + subject + "_question"));
+        allQuestion = JSON.parse(localStorage.getItem(brandCodeEl + "_brand" + "_" + subject + "_question"));
     }
     else {
 
@@ -407,7 +407,7 @@ const updateQuestion = (index, question, opOne, opTwo, opThree, opFour, opFive) 
             correctAnswer: opFive
         }
 
-        localStorage.setItem(brandCodeEl + "_" + selectSubject.value + "_question", JSON.stringify(allQuestion));
+        localStorage.setItem(brandCodeEl + "_brand" + "_" + selectSubject.value + "_question", JSON.stringify(allQuestion));
 
     }
     else {
@@ -422,7 +422,7 @@ const updateQuestion = (index, question, opOne, opTwo, opThree, opFour, opFive) 
             correctAnswer: allQuestionInput[5].value,
         })
 
-        localStorage.setItem(brandCodeEl + "_" + chooseSubject.value + "_question", JSON.stringify(allQuestion));
+        localStorage.setItem(brandCodeEl + "_brand" + "_" + chooseSubject.value + "_question", JSON.stringify(allQuestion));
 
         swal("Created !", "MCQ is created successfully !", "success");
     }
@@ -435,9 +435,9 @@ let visibleQuestion = document.querySelector(".visible-question");
 
 selectSubject.addEventListener("change", () => {
 
-    if (localStorage.getItem(brandCodeEl + "_" + selectSubject.value + "_question") != null) {
+    if (localStorage.getItem(brandCodeEl + "_brand" + "_" + selectSubject.value + "_question") != null) {
 
-        newQuestions = JSON.parse(localStorage.getItem(brandCodeEl + "_" + selectSubject.value + "_question"));
+        newQuestions = JSON.parse(localStorage.getItem(brandCodeEl + "_brand" + "_" + selectSubject.value + "_question"));
 
         visibleQuestion.innerHTML = "";
 
@@ -464,45 +464,49 @@ var allRegInput = registrationForm.querySelectorAll("input");
 var userType = registrationForm.querySelector("select");
 var address = registrationForm.querySelector("textarea");
 
+var registrationDataEl = document.querySelector(".registration-data");  // t-body
+
 
 // registration form onsubmit coding
 
-registrationForm.onsubmit = function(event) {
-    
+registrationForm.onsubmit = function (event) {
+
     event.preventDefault();
 
     registrationFunc();
+
+    getRegistrationDataFunc();
 }
 
 
 // get registered data from the session storage 
 
-if(localStorage.getItem(brandCodeEl + "_registrationData") != null) {
+if (localStorage.getItem(brandCodeEl + "_brand" + "_registrationData") != null) {
 
-    registrationData = JSON.parse(localStorage.getItem(brandCodeEl + "_registrationData"));
+    registrationData = JSON.parse(localStorage.getItem(brandCodeEl + "_brand" + "_registrationData"));
 }
 
 
 // registration function coding
 
 const registrationFunc = () => {
-    
-    if(userType.value != "choose type") {
+
+    if (userType.value != "choose type") {
 
         registrationData.push({
 
-            userType : userType.value,
-            name : allRegInput[0].value,
-            fatherName : allRegInput[1].value,
-            dob : allRegInput[2].value,
-            mobile : allRegInput[3].value,
-            enrollment : allRegInput[4].value,
-            password : allRegInput[5].value,
-            address : address.value
-    
+            userType: userType.value,
+            name: allRegInput[0].value,
+            fatherName: allRegInput[1].value,
+            dob: allRegInput[2].value,
+            mobile: allRegInput[3].value,
+            enrollment: allRegInput[4].value,
+            password: allRegInput[5].value,
+            address: address.value
+
         })
-    
-        localStorage.setItem(brandCodeEl + "_registrationData", JSON.stringify(registrationData));
+
+        localStorage.setItem(brandCodeEl + "_brand" + "_registrationData", JSON.stringify(registrationData));
 
         swal("Congratulations !", "Registration done successfully !", "success");
 
@@ -513,6 +517,82 @@ const registrationFunc = () => {
         swal("Select Type !", "Please choose a user type !", "warning");
     }
 }
+
+
+// show data in table
+
+const getRegistrationDataFunc = () => {
+
+    registrationDataEl.innerHTML = "";
+
+    registrationData.forEach((data, index) => {
+
+        registrationDataEl.innerHTML += `
+        
+        <tr index = "${index}">
+            <th scope="row">${index + 1}</th>
+                <td>
+                    <div class="profile">
+                        <img src="../images/profile.jpg" class="rounded-circle" width="40" height="40" alt="profile-img">
+                    </div>
+                </td>
+            <td class="text-nowrap" style="width: 8rem;">${data.name}</td>
+            <td class="text-nowrap" style="width: 8rem;">${data.fatherName}</td>
+            <td class="text-nowrap" style="width: 8rem;">${data.dob}</td>
+            <td class="text-nowrap" style="width: 8rem;">${data.mobile}</td>
+            <td class="text-nowrap" style="width: 8rem;">${data.userType}</td>
+            <td class="text-nowrap" style="width: 8rem;">${data.userType}</td>
+            <td class="text-nowrap" style="width: 8rem;">${data.password}</td>
+            <td class="text-nowrap" style="width: 8rem;">${data.address}</td>
+            <td class="text-nowrap" style="width: 8rem;">
+                <i class="fa-solid fa-trash-can text-danger del-btn btn"></i>
+                <i class="fa-solid fa-eye btn text-white" type="button" data-bs-toggle="modal" data-bs-target="#myModal"></i>
+            </td>
+        </tr>
+        `;
+    });
+
+
+    // start del btn conding
+
+    var i;
+    var allDelBtn = registrationDataEl.querySelectorAll(".del-btn");
+
+    for (i = 0; i < allDelBtn.length; i++) {
+
+        allDelBtn[i].onclick = function () {
+
+            let parent = this.parentElement.parentElement;
+            let index = parent.getAttribute("index");
+
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        registrationData.splice(index, 1);
+                        localStorage.setItem(brandCodeEl + "_brand" + "_registrationData", JSON.stringify(registrationData));
+
+                        getRegistrationDataFunc();
+
+                        swal("Poof! Your imaginary file has been deleted!", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
+        }
+    }
+
+}
+
+getRegistrationDataFunc(); // onload calling
 
 
 // start newQuestionFunc function coding
@@ -569,7 +649,7 @@ const newQuestionFunc = () => {
                     if (willDelete) {
 
                         newQuestions.splice(index, 1); // empty array
-                        localStorage.setItem(brandCodeEl + "_" + selectSubject.value + "_question", JSON.stringify(newQuestions));
+                        localStorage.setItem(brandCodeEl + "_brand" + "_" + selectSubject.value + "_question", JSON.stringify(newQuestions));
                         parent.remove();
 
                         swal("Poof! Your imaginary file has been deleted!", {
@@ -636,7 +716,7 @@ const newQuestionFunc = () => {
                             // revert the editable functionality
                             h4.contentEditable = false;
 
-                            for(j = 0; j < span.length; j++) {
+                            for (j = 0; j < span.length; j++) {
 
                                 span[j].style.border = "none";
                                 span[j].contentEditable = false;
@@ -654,7 +734,7 @@ const newQuestionFunc = () => {
                             // revert the editable functionality
                             h4.contentEditable = false;
 
-                            for(j = 0; j < span.length; j++) {
+                            for (j = 0; j < span.length; j++) {
 
                                 span[j].style.border = "none";
                                 span[j].contentEditable = false;
