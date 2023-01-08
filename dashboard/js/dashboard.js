@@ -466,6 +466,14 @@ var address = registrationForm.querySelector("textarea");
 
 var registrationDataEl = document.querySelector(".registration-data");  // t-body
 
+// modal box variable
+var modalHeading = document.querySelector(".modal-title");
+var modalProfileBox = document.querySelector(".upload-box");
+var uploadInput = document.querySelector(".upload-input");
+var modalImageUrl; // global img url
+var modalProfileHeading = document.querySelector(".modal-profile-heading");
+var closeBtn = document.querySelector(".btn-close");
+
 
 // registration form onsubmit coding
 
@@ -502,7 +510,8 @@ const registrationFunc = () => {
             mobile: allRegInput[3].value,
             enrollment: allRegInput[4].value,
             password: allRegInput[5].value,
-            address: address.value
+            address: address.value,
+            profilePic: "/images/avtar.png"
 
         })
 
@@ -531,22 +540,22 @@ const getRegistrationDataFunc = () => {
         
         <tr index = "${index}">
             <th scope="row">${index + 1}</th>
-                <td>
-                    <div class="profile">
-                        <img src="../images/profile.jpg" class="rounded-circle" width="40" height="40" alt="profile-img">
-                    </div>
-                </td>
+            <td>
+                <div class="profile">
+                    <img src="${data.profilePic}" class="rounded-circle" width="40" height="40" alt="img">
+                </div>
+            </td>
             <td class="text-nowrap" style="width: 8rem;">${data.name}</td>
             <td class="text-nowrap" style="width: 8rem;">${data.fatherName}</td>
             <td class="text-nowrap" style="width: 8rem;">${data.dob}</td>
             <td class="text-nowrap" style="width: 8rem;">${data.mobile}</td>
             <td class="text-nowrap" style="width: 8rem;">${data.userType}</td>
-            <td class="text-nowrap" style="width: 8rem;">${data.userType}</td>
+            <td class="text-nowrap" style="width: 8rem;">${data.enrollment}</td>
             <td class="text-nowrap" style="width: 8rem;">${data.password}</td>
             <td class="text-nowrap" style="width: 8rem;">${data.address}</td>
             <td class="text-nowrap" style="width: 8rem;">
                 <i class="fa-solid fa-trash-can text-danger del-btn btn"></i>
-                <i class="fa-solid fa-eye btn text-white" type="button" data-bs-toggle="modal" data-bs-target="#myModal"></i>
+                <i class="fa-solid fa-eye btn text-white edit-btn" type="button" data-bs-toggle="modal" data-bs-target="#myModal"></i>
             </td>
         </tr>
         `;
@@ -555,7 +564,7 @@ const getRegistrationDataFunc = () => {
 
     // start del btn conding
 
-    var i;
+    var i, j;
     var allDelBtn = registrationDataEl.querySelectorAll(".del-btn");
 
     for (i = 0; i < allDelBtn.length; i++) {
@@ -590,9 +599,158 @@ const getRegistrationDataFunc = () => {
         }
     }
 
+
+    // start edit btn coding
+
+    var allEditBtn = registrationDataEl.querySelectorAll(".edit-btn");
+
+    // modal box variables
+    var modalForm = document.querySelector(".modal-form");
+    var allModalInput = modalForm.querySelectorAll("input");
+    var modalTextarea = modalForm.querySelector("textarea");
+    var modalEditBtn = document.querySelector(".modal-edit-btn");
+    var modalUpdateBtn = document.querySelector(".modal-update-btn");
+
+    for (i = 0; i < allEditBtn.length; i++) {
+
+        allEditBtn[i].onclick = function () {
+
+            let parent = this.parentElement.parentElement;
+            let index = parent.getAttribute("index");
+            let td = parent.querySelectorAll("td");
+
+            modalHeading.innerHTML = "Welcome : " + allUserData.brandName;
+
+            let imgUrl = td[0].querySelector("img").src;
+            let name = td[1].innerHTML;
+            let fatherName = td[2].innerHTML;
+            let dob = td[3].innerHTML;
+            let mobile = td[4].innerHTML;
+            let userType = td[5].innerHTML;
+            let enrollment = td[6].innerHTML;
+            let password = td[7].innerHTML;
+            let address = td[8].innerHTML;
+
+            // modal box coding
+
+            modalProfileBox.style.backgroundImage = `url(${imgUrl})`;
+            allModalInput[0].value = name;
+            allModalInput[1].value = fatherName;
+            allModalInput[2].value = dob;
+            allModalInput[3].value = mobile;
+            allModalInput[4].value = userType;
+            allModalInput[5].value = enrollment;
+            allModalInput[6].value = password;
+            modalTextarea.value = address;
+
+            modalProfileHeading.innerHTML = allModalInput[0].value;
+
+            // disabled all modal box input
+
+            for (j = 0; j < allModalInput.length; j++) {
+
+                allModalInput[j].disabled = true;
+            }
+
+            modalTextarea.disabled = true;
+            uploadInput.disabled = true;
+
+
+            // start modal edit btn coding
+
+            modalEditBtn.onclick = function () {
+
+                for (j = 0; j < allModalInput.length; j++) {
+
+                    allModalInput[j].disabled = false;
+                }
+
+                modalTextarea.disabled = false;
+                uploadInput.disabled = false;
+
+                this.classList.add("d-none");
+                modalUpdateBtn.classList.remove("d-none");
+
+                // modal upadte btn coding
+
+                modalUpdateBtn.onclick = function () {
+
+                    let name = allModalInput[0].value;
+                    let fatherName = allModalInput[1].value;
+                    let dob = allModalInput[2].value;
+                    let mobile = allModalInput[3].value;
+                    let userType = allModalInput[4].value;
+                    let enrollment = allModalInput[5].value;
+                    let password = allModalInput[6].value;
+                    let address = modalTextarea.value;
+
+                    // update registration data array in local storage
+
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                        .then((willDelete) => {
+                            if (willDelete) {
+
+                                registrationData[index] = {
+
+                                    userType: userType,
+                                    name: name,
+                                    fatherName: fatherName,
+                                    dob: dob,
+                                    mobile: mobile,
+                                    enrollment: enrollment,
+                                    password: password,
+                                    address: address,
+
+                                    profilePic: modalImageUrl == undefined ? imgUrl : modalImageUrl
+
+                                };
+
+                                localStorage.setItem(brandCodeEl + "_brand" + "_registrationData", JSON.stringify(registrationData));
+
+                                getRegistrationDataFunc();
+
+                                this.classList.add("d-none");
+                                modalEditBtn.classList.remove("d-none");
+                                closeBtn.click();
+
+                                swal("Poof! Your imaginary file has been deleted!", {
+                                    icon: "success",
+                                });
+                            } else {
+                                swal("Your imaginary file is safe!");
+                            }
+                        });
+                }
+
+            }
+        }
+    }
+
 }
 
 getRegistrationDataFunc(); // onload calling
+
+
+// Read modal profile pic coding
+
+modalProfileBox.onchange = function () {
+
+    let fReader = new FileReader();
+
+    fReader.onload = function (e) {
+
+        modalImageUrl = e.target.result;
+        modalProfileBox.style.backgroundImage = `url(${modalImageUrl})`;
+    }
+
+    fReader.readAsDataURL(uploadInput.files[0]);
+}
 
 
 // start newQuestionFunc function coding
