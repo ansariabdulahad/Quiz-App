@@ -224,9 +224,9 @@ const newSubject = (subject, index) => {
 // getSubject function coding.
 const getSubject = () => {
 
-    if (localStorage.getItem(brandCodeEl + "_brand" + "_allSubject") != null) {
+    if (localStorage.getItem(brandCodeEl + "_allSubject") != null) {
 
-        allSubject = JSON.parse(localStorage.getItem(brandCodeEl + "_brand" + "_allSubject"));
+        allSubject = JSON.parse(localStorage.getItem(brandCodeEl + "_allSubject"));
 
         allSubject.forEach((subject, index) => {
 
@@ -273,7 +273,7 @@ const updateSubject = (editedSub, id) => {
         }
     }
 
-    localStorage.setItem(brandCodeEl + "_brand" + "_allSubject", JSON.stringify(allSubject));
+    localStorage.setItem(brandCodeEl + "_allSubject", JSON.stringify(allSubject));
 }
 
 
@@ -380,9 +380,9 @@ const createQuestionFunc = () => {
 const checkSubjectKey = () => {
 
     // get all MCQs from the local storage
-    if (localStorage.getItem(brandCodeEl + "_brand" + "_" + subject + "_question") != null) {
+    if (localStorage.getItem(brandCodeEl + "_" + subject + "_question") != null) {
 
-        allQuestion = JSON.parse(localStorage.getItem(brandCodeEl + "_brand" + "_" + subject + "_question"));
+        allQuestion = JSON.parse(localStorage.getItem(brandCodeEl + "_" + subject + "_question"));
     }
     else {
 
@@ -407,7 +407,7 @@ const updateQuestion = (index, question, opOne, opTwo, opThree, opFour, opFive) 
             correctAnswer: opFive
         }
 
-        localStorage.setItem(brandCodeEl + "_brand" + "_" + selectSubject.value + "_question", JSON.stringify(allQuestion));
+        localStorage.setItem(brandCodeEl + "_" + selectSubject.value + "_question", JSON.stringify(allQuestion));
 
     }
     else {
@@ -422,7 +422,7 @@ const updateQuestion = (index, question, opOne, opTwo, opThree, opFour, opFive) 
             correctAnswer: allQuestionInput[5].value,
         })
 
-        localStorage.setItem(brandCodeEl + "_brand" + "_" + chooseSubject.value + "_question", JSON.stringify(allQuestion));
+        localStorage.setItem(brandCodeEl + "_" + chooseSubject.value + "_question", JSON.stringify(allQuestion));
 
         swal("Created !", "MCQ is created successfully !", "success");
     }
@@ -435,9 +435,9 @@ let visibleQuestion = document.querySelector(".visible-question");
 
 selectSubject.addEventListener("change", () => {
 
-    if (localStorage.getItem(brandCodeEl + "_brand" + "_" + selectSubject.value + "_question") != null) {
+    if (localStorage.getItem(brandCodeEl + "_" + selectSubject.value + "_question") != null) {
 
-        newQuestions = JSON.parse(localStorage.getItem(brandCodeEl + "_brand" + "_" + selectSubject.value + "_question"));
+        newQuestions = JSON.parse(localStorage.getItem(brandCodeEl + "_" + selectSubject.value + "_question"));
 
         visibleQuestion.innerHTML = "";
 
@@ -489,9 +489,9 @@ registrationForm.onsubmit = function (event) {
 
 // get registered data from the session storage 
 
-if (localStorage.getItem(brandCodeEl + "_brand" + "_registrationData") != null) {
+if (localStorage.getItem(brandCodeEl + "_registrationData") != null) {
 
-    registrationData = JSON.parse(localStorage.getItem(brandCodeEl + "_brand" + "_registrationData"));
+    registrationData = JSON.parse(localStorage.getItem(brandCodeEl + "_registrationData"));
 }
 
 
@@ -515,7 +515,7 @@ const registrationFunc = () => {
 
         })
 
-        localStorage.setItem(brandCodeEl + "_brand" + "_registrationData", JSON.stringify(registrationData));
+        localStorage.setItem(brandCodeEl + "_registrationData", JSON.stringify(registrationData));
 
         swal("Congratulations !", "Registration done successfully !", "success");
 
@@ -585,7 +585,7 @@ const getRegistrationDataFunc = () => {
                     if (willDelete) {
 
                         registrationData.splice(index, 1);
-                        localStorage.setItem(brandCodeEl + "_brand" + "_registrationData", JSON.stringify(registrationData));
+                        localStorage.setItem(brandCodeEl + "_registrationData", JSON.stringify(registrationData));
 
                         getRegistrationDataFunc();
 
@@ -644,6 +644,13 @@ const getRegistrationDataFunc = () => {
             modalTextarea.value = address;
 
             modalProfileHeading.innerHTML = allModalInput[0].value;
+
+            const d = new Date();
+            let modalMonth = document.querySelector(".modal-month");
+            let modalDate = document.querySelector(".modal-date");
+            
+            modalMonth.innerHTML = d.toLocaleString("default", {month : "long"});
+            modalDate.innerHTML = d.getDate();
 
             // disabled all modal box input
 
@@ -711,7 +718,7 @@ const getRegistrationDataFunc = () => {
 
                                 };
 
-                                localStorage.setItem(brandCodeEl + "_brand" + "_registrationData", JSON.stringify(registrationData));
+                                localStorage.setItem(brandCodeEl + "_registrationData", JSON.stringify(registrationData));
 
                                 getRegistrationDataFunc();
 
@@ -807,7 +814,7 @@ const newQuestionFunc = () => {
                     if (willDelete) {
 
                         newQuestions.splice(index, 1); // empty array
-                        localStorage.setItem(brandCodeEl + "_brand" + "_" + selectSubject.value + "_question", JSON.stringify(newQuestions));
+                        localStorage.setItem(brandCodeEl + "_" + selectSubject.value + "_question", JSON.stringify(newQuestions));
                         parent.remove();
 
                         swal("Poof! Your imaginary file has been deleted!", {
