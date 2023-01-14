@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("/quiz/images/bg-img.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.quiz-questions {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 50px #000 !important;
+}

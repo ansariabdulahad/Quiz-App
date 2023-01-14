@@ -242,7 +242,25 @@ body {
     box-shadow: 0px 0px 2px #5344f5;
 }
 
+.select-question-box {
+    height: 350px;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}
+
 /* End section three coding update and delete subjects */
+
+
+/* Start section five coding Student and Teacher registration form data*/
+
+.registration-data-box {
+    overflow-x: scroll;
+    overflow-y: scroll;
+    height: 187px;
+}
+
+/* End section five coding Student and Teacher registration form data */
+
 
 
 /* Start modal box coding */
