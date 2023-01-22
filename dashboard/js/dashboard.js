@@ -285,6 +285,9 @@ let chooseSubject = document.querySelector("#choose-subject");
 // Update & delete mcq var
 let selectSubject = document.querySelector("#select-subject");
 
+// result subject section var
+var resultSubjectEl = document.querySelector("#result-subject");
+
 // chooseSubjectFunc coding
 const chooseSubjectFunc = () => {
 
@@ -305,6 +308,13 @@ const chooseSubjectFunc = () => {
         <option value="${subject.subjectName}"> ${subject.subjectName} </option>
 
         `;
+
+        // result subject coding
+        resultSubjectEl.innerHTML += `
+        
+        <option value="${subject.subjectName}"> ${subject.subjectName} </option>
+
+        `
     })
 }
 
@@ -315,19 +325,19 @@ let subject;
 
 let questionForm = document.querySelector(".question-form");
 let allQuestionInput = questionForm.querySelectorAll("input");
-let firstOption = chooseSubject.querySelectorAll("option")[1];
+// let firstOption = chooseSubject.querySelectorAll("option")[1];
 
 // Start checkSubject function coding
 const checkSubject = () => {
 
-    if (chooseSubject.value == "choose subject") {
+    // if (chooseSubject.value == "choose subject") {
 
-        subject = firstOption.value;
-    }
-    else {
+    //     subject = firstOption.value;
+    // }
+    // else {
 
         subject = chooseSubject.value;
-    }
+    // }
 
 }
 
@@ -403,7 +413,7 @@ const updateQuestion = (index, question, opOne, opTwo, opThree, opFour, opFive) 
             optionOne: opOne,
             optionTwo: opTwo,
             optionThree: opThree,
-            opFour: opFour,
+            optionFour: opFour,
             correctAnswer: opFive
         }
 
@@ -648,8 +658,8 @@ const getRegistrationDataFunc = () => {
             const d = new Date();
             let modalMonth = document.querySelector(".modal-month");
             let modalDate = document.querySelector(".modal-date");
-            
-            modalMonth.innerHTML = d.toLocaleString("default", {month : "long"});
+
+            modalMonth.innerHTML = d.toLocaleString("default", { month: "long" });
             modalDate.innerHTML = d.getDate();
 
             // disabled all modal box input
@@ -917,3 +927,178 @@ const newQuestionFunc = () => {
 }
 
 /* End section two and three coding */
+
+
+/* Start result section five coding */
+
+
+// getting subject related result from database
+
+var allResult = [];
+
+var subjectResultBox = document.querySelector(".subject-result-data");
+var emptySubjectMsg = document.querySelector(".empty-subject-msg");
+
+resultSubjectEl.addEventListener("change", () => {
+
+    subjectResultBox.innerHTML = ""; // empty before on change
+    emptySubjectMsg.innerHTML = "";
+
+    if (resultSubjectEl.value != "choose subject") {
+
+        if (localStorage.getItem(brandCodeEl + "_" + resultSubjectEl.value + "_result") != null) {
+
+            allResult = JSON.parse(localStorage.getItem(brandCodeEl + "_" + resultSubjectEl.value + "_result"));
+
+            // read and store result in table
+            allResult.forEach((data, index) => {
+
+                subjectResultBox.innerHTML += `
+                
+                    <tr>
+                        <td class="text-nowrap" style="width: 8rem;">${index + 1}</td>
+                        <td class="text-nowrap" style="width: 8rem;">${data.name}</td>
+                        <td class="text-nowrap" style="width: 8rem;">${data.enrollment}</td>
+                        <td class="text-nowrap" style="width: 8rem;">${data.subject}</td>
+                        <td class="text-nowrap" style="width: 8rem;">${data.rightAns}</td>
+                        <td class="text-nowrap" style="width: 8rem;">${data.wrongAns}</td>
+                        <td class="text-nowrap" style="width: 8rem;">${data.maxMarks}</td>
+                    </tr>
+
+                `
+
+            })
+        }
+        else {
+
+            emptySubjectMsg.innerHTML = "There is no result related to this subject !";
+        }
+    }
+    else {
+
+        swal("Empty Field !", "Please select subject first !", "warning");
+    }
+})
+
+
+// start get certificate coding
+
+var closeBtn = document.querySelector(".certificate-close-btn");
+var certificateMainBox = document.querySelector(".certificate-main");
+var certificateForm = document.querySelector(".certificate-form");
+var cerInput = certificateForm.querySelector("input");
+
+var profilePicEl = certificateMainBox.querySelector(".profile-pic");
+
+var cerBrandNameEl = certificateMainBox.querySelector(".brand-name");
+var cerAddress = certificateMainBox.querySelector(".cer-address");
+var cerNameEl = certificateMainBox.querySelector(".cer-name");
+var cerEnrollmentEl = certificateMainBox.querySelector(".cer-enrollment");
+var cerfatherEl = certificateMainBox.querySelector(".cer-father");
+
+var cerData = certificateMainBox.querySelector(".cer-data");
+
+var cerMaxMarksEl = certificateMainBox.querySelector(".max-marks");
+var cerMarksObtainedEl = certificateMainBox.querySelector(".mark-obtained");
+var cerTotalEl = certificateMainBox.querySelector(".total");
+
+var finalResultBox = certificateMainBox.querySelector(".final-result-box");
+
+// get certificate
+
+certificateForm.onsubmit = function (e) {
+
+    e.preventDefault();
+
+    getCertificate(); // calling...
+}
+
+// getcertificate coding
+const getCertificate = () => {
+
+    if (cerInput.value != "") {
+
+        cerData.innerHTML = "";
+
+        if (localStorage.getItem(brandCodeEl + "_" + cerInput.value + "_result") != null) {
+
+            let userResult = JSON.parse(localStorage.getItem(brandCodeEl + "_" + cerInput.value + "_result"));
+
+            certificateMainBox.classList.add("active");
+
+            cerBrandNameEl.innerHTML = allUserData.brandName;
+            cerAddress.innerHTML = allUserData.address;
+            cerNameEl.innerHTML = userResult[0].name;
+            cerEnrollmentEl.innerHTML = userResult[0].enrollment;
+            cerfatherEl.innerHTML = userResult[0].fatherName;
+
+            // profilePicEl.src = userResult[0].profilePic;
+            for(let i = 0; i < userResult.length; i++) {
+
+                if(userResult[i].profilePic) {
+                    profilePicEl.src = userResult[i].profilePic;
+                }
+            }
+
+            let maxMarks = 0;
+            let markObtained = 0;
+            let total = 0;
+            
+            let finalResult = (total/maxMarks*100).toFixed(2);
+
+            if(finalResult <= 32.99) {
+                
+                finalResultBox.innerHTML = "FAIL";
+            }
+            else {
+                
+                finalResultBox.innerHTML = "PASS";
+            }
+
+            userResult.forEach((data, index) => {
+
+                cerData.innerHTML += `
+                
+                    <tr>
+                        <td class="text-nowrap" style="width: 8rem;">${index + 1}</td>
+                        <td class="text-nowrap" style="width: 8rem;">${data.subject}</td>
+                        <td class="text-nowrap" style="width: 8rem;">${data.maxMarks}</td>
+                        <td class="text-nowrap" style="width: 8rem;">${data.rightAns}</td>
+                        <td class="text-nowrap" style="width: 8rem;">${data.rightAns}</td>
+                    </tr>
+                    
+                `
+                
+                maxMarks += data.maxMarks;
+                markObtained += data.rightAns;
+                total += data.rightAns;                
+            })
+            
+            cerMaxMarksEl.innerHTML = maxMarks;
+            cerMarksObtainedEl.innerHTML = markObtained;
+            cerTotalEl.innerHTML = total;
+
+        }
+        else {
+
+            swal("No Result Found !", "There is no result present related to this enrollment !", "warning");
+        }
+
+    }
+    else {
+
+        swal("Input Field is Empty !", "Please Enter Your Enrollment Number !", "warning");
+    }
+}
+
+// closing certificate coding
+
+closeBtn.onclick = function () {
+
+    certificateMainBox.classList.remove("active");
+    cerInput.value = "";
+
+}
+
+
+/* End result section five coding */

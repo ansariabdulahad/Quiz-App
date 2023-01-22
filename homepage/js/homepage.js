@@ -15,11 +15,11 @@ var allUserData = [];
 var i;
 var brandCode = [];
 
-for(i = 0; i < localStorage.length; i++) {
+for (i = 0; i < localStorage.length; i++) {
 
     let allKeys = localStorage.key(i);
-    
-    if(allKeys.match("_brand")) {
+
+    if (allKeys.match("_brand")) {
 
         brandCode.push(allKeys.replace("_brand", ""));
     }
@@ -45,9 +45,9 @@ brandCode.forEach((data, index) => {
 // Start login coding
 
 loginSelectEl.addEventListener("change", () => {
-    
-    if(loginSelectEl.value != "choose brand code") {
-        
+
+    if (loginSelectEl.value != "choose brand code") {
+
         sessionStorage.setItem("brandCode", loginSelectEl.value);
 
         allLoginInput[0].disabled = false;
@@ -55,11 +55,11 @@ loginSelectEl.addEventListener("change", () => {
         loginBtn.disabled = false;
 
         lBrandCode = sessionStorage.getItem("brandCode");
-        
+
         loginUser(); // calling...
     }
     else {
-        
+
         allLoginInput[0].disabled = true;
         allLoginInput[1].disabled = true;
         loginBtn.disabled = true;
@@ -69,40 +69,47 @@ loginSelectEl.addEventListener("change", () => {
 
 
 const loginUser = () => {
-    
-    if(localStorage.getItem(lBrandCode + "_registrationData") != null) {
+
+    if (localStorage.getItem(lBrandCode + "_registrationData") != null) {
 
         allUserData = JSON.parse(localStorage.getItem(lBrandCode + "_registrationData"));
         loginNotice.innerHTML = "";
     }
     else {
-        
+
         loginNotice.innerHTML = "No data registered related to this brand !";
     }
-
+    
 
     // login form onsubmit coding
-    
-    loginForm.onsubmit = function(e) {
+
+    loginForm.onsubmit = function (e) {
 
         e.preventDefault();
-        
-        for(i = 0; i < allUserData.length; i++) {
 
-            if(allUserData[i].enrollment == allLoginInput[0].value) {
+        for (i = 0; i < allUserData.length; i++) {
 
-                if(allUserData[i].password == allLoginInput[1].value) {
+            if (allUserData[i].enrollment == allLoginInput[0].value) {
 
-                    if(allUserData[i].userType == "Teacher") {
+                if (allUserData[i].password == allLoginInput[1].value) {
+
+                    if (allUserData[i].userType == "Teacher") {
 
                         sessionStorage.setItem("brandCode", lBrandCode);
+                        
                         window.location = "../dashboard/dashboard.html";
                         loginSelectEl.innerHTML = ""; // empty after getting result
                         return;
                     }
                     else {
-                        
+
+                        sessionStorage.setItem("enrollment", allUserData[i].enrollment);
+                        sessionStorage.setItem("name", allUserData[i].name);
+                        sessionStorage.setItem("address", allUserData[i].address);
+                        sessionStorage.setItem("fatherName", allUserData[i].fatherName);
+                        sessionStorage.setItem("imgUrl", allUserData[i].profilePic);
                         sessionStorage.setItem("brandCode", lBrandCode);
+
                         window.location = "../welcome/welcome.html";
                         loginSelectEl.innerHTML = ""; // empty after getting result
                         return;

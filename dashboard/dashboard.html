@@ -164,25 +164,25 @@
                                                     class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white"
                                                     placeholder="Enter Your MCQ Question Here !">
 
-                                                <label for="option-one"><i class="fa-solid fa-caret-right"></i> Option -
+                                                <label for="option-one"><i class="fa-solid fa-caret-right"></i> option -
                                                     A</label>
                                                 <input type="text" required id="option-one"
                                                     class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white"
                                                     placeholder="Enter option one">
 
-                                                <label for="option-two"><i class="fa-solid fa-caret-right"></i> Option -
+                                                <label for="option-two"><i class="fa-solid fa-caret-right"></i> option -
                                                     B</label>
                                                 <input type="text" required id="option-two"
                                                     class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white"
                                                     placeholder="Enter option two">
 
-                                                <label for="option-three"><i class="fa-solid fa-caret-right"></i> Option
+                                                <label for="option-three"><i class="fa-solid fa-caret-right"></i> option
                                                     - C</label>
                                                 <input type="text" required id="option-three"
                                                     class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white"
                                                     placeholder="Enter option three">
 
-                                                <label for="option-four"><i class="fa-solid fa-caret-right"></i> Option
+                                                <label for="option-four"><i class="fa-solid fa-caret-right"></i> option
                                                     - D</label>
                                                 <input type="text" required id="option-four"
                                                     class="form-control mt-2 mb-3 bg-black bg-opacity-75 text-white"
@@ -381,7 +381,7 @@
                     <div class="row mt-3">
 
                         <!-- second column -->
-                        <div class="col-md-12">
+                        <div class="col-md-12 mt-3">
                             <ul class="list-group teacher-box">
                                 <li class="list-group-item">Students And Teachers Data</li>
                             </ul>
@@ -400,7 +400,7 @@
                                             <div>
                                                 <table
                                                     class="table table-responsive table-striped table-dark table-hover caption-top text-white table-bordered">
-                                                    <!-- <caption>List of users</caption> -->
+                                                    <caption>List of users</caption>
                                                     <thead class="table-secondary text-center">
                                                         <tr class="text-nowrap">
                                                             <th>Sr.No</th>
@@ -432,6 +432,102 @@
 
                     <!-- End section Four coding Student and Teacher Registration from Data -->
 
+                    <!-- Start Section Five Coding get all subject related results -->
+
+                    <div class="row mt-3">
+
+                        <!-- first column -->
+                        <div class="col-md-4 mt-3">
+                            <ul class="list-group teacher-box">
+                                <li class="list-group-item">Search Result</li>
+                            </ul>
+
+                            <div class="accordion mt-1 mb-3">
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <button class="accordion-button" data-bs-toggle="collapse"
+                                            data-bs-target="#particular-result">Click to get student result</button>
+                                    </div>
+
+                                    <div class="accordion-collapse collapse" id="particular-result">
+                                        <div class="accordion-body">
+
+                                            <form action="#" class="certificate-form">
+                                                <input type="text" placeholder="Enter Your Enrollment"
+                                                    class="form-control subject bg-black bg-opacity-75 text-white">
+                                                <div align="end">
+                                                    <button class="btn mt-3">Get Result</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- second column -->
+                        <div class="col-md-8 mt-3">
+                            <ul class="list-group teacher-box">
+                                <li class="list-group-item">Get all subject related results</li>
+                            </ul>
+
+                            <div class="accordion mt-1">
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <button class="accordion-button bg-black text-white" data-bs-toggle="collapse"
+                                            data-bs-target="#result-box">Click to get the all subject results</button>
+                                    </div>
+
+                                    <div class="accordion-collapse collapse" id="result-box">
+                                        <div class="accordion-body mb-3 select-question-box">
+
+                                            <select name="" id="result-subject"
+                                                class="form-select mb-5 bg-dark bg-opacity-75 text-white">
+                                                <option value="choose subject">Choose Subjects</option>
+                                            </select>
+
+                                            <h5 class="text-danger shadow-lg empty-subject-msg"></h5>
+
+                                            <table
+                                                class="table table-responsive table-striped table-dark table-hover caption-top text-white table-bordered">
+                                                <caption>List of results</caption>
+                                                <thead class="table-secondary text-center">
+                                                    <tr class="text-nowrap">
+                                                        <th>#</th>
+                                                        <th>Name</th>
+                                                        <th>Enrollment</th>
+                                                        <th>Subject</th>
+                                                        <th>Correct Answer</th>
+                                                        <th>Wrong Answer</th>
+                                                        <th>Out Of</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-group-divider text-center subject-result-data">
+
+                                                    <!-- <tr>
+                                                        <td class="text-nowrap" style="width: 8rem;">1</td>
+                                                        <td class="text-nowrap" style="width: 8rem;">Ahad Ansari</td>
+                                                        <td class="text-nowrap" style="width: 8rem;">123456</td>
+                                                        <td class="text-nowrap" style="width: 8rem;">Hindi</td>
+                                                        <td class="text-nowrap" style="width: 8rem;">10</td>
+                                                        <td class="text-nowrap" style="width: 8rem;">50</td>
+                                                        <td class="text-nowrap" style="width: 8rem;">60</td>
+                                                    </tr> -->
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- End Section Five Coding get all subject related results -->
+
                 </div>
             </div>
         </div>
@@ -441,8 +537,9 @@
 
     <!-- Start Modal box coding -->
 
-    
-    <div class="modal fade user-profile-box animate__animated animate__backInLeft" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal fade user-profile-box animate__animated animate__backInLeft" id="myModal" tabindex="-1"
+        aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -455,7 +552,7 @@
                     <div class="row">
 
                         <div class="col-5">
-                            
+
                             <div class="profile-box">
 
                                 <div class="upload-box">
@@ -471,7 +568,8 @@
                             <div class="date-box mt-3">
 
                                 <div class="icon-box">
-                                    <i class="fa-solid fa-caret-left"></i><h3 class="modal-month">January</h3><i class="fa-solid fa-caret-right"></i>
+                                    <i class="fa-solid fa-caret-left"></i>
+                                    <h3 class="modal-month">January</h3><i class="fa-solid fa-caret-right"></i>
                                 </div>
 
                                 <br>
@@ -483,7 +581,7 @@
                         </div>
 
                         <div class="col-7">
-                            
+
                             <form action="#" class="modal-form">
 
                                 <div class="input-group mb-3">
@@ -543,6 +641,86 @@
     </div>
 
     <!-- End Modal box coding -->
+
+
+    <!-- Start certificate page coding -->
+
+
+    <div class="mb-5 certificate-main">
+
+        <button class="btn certificate-close-btn"><i class="fa-solid fa-circle-xmark"></i></button>
+
+        <img src="../dashboard/images/Purple Geometric Company Certificate Portrait.png" width="100%" height="100%"
+            alt="certifiacte-img" class="rounded shadow-lg">
+
+        <div class="main-box fw-bold shadow-lg">
+
+            <h1 class="text-center brand-name">Just For Code (JFC)</h1>
+            <p class="text-center cer-address">757, yusuf APT, 1st flr bhusar mohalla bhiwandi - 421302</p>
+
+            <div class="name-box shadow-lg">
+
+                <div class="img-box">
+
+                    <img src="../images/avtar.png" class="profile-pic" alt="result-img" width="100%" height="100%">
+                </div>
+
+                <div class="roll-box p-3">
+
+                    <p>Name : </p>
+                    <p>Enrollment : </p>
+                    <p>Father Name : </p>
+                </div>
+
+                <div class="content-box p-3">
+
+                    <p class="cer-name">Name</p>
+                    <p class="cer-enrollment">Enrollment</p>
+                    <p class="cer-father">Father Name</p>
+                </div>
+            </div>
+
+            <!-- <h4 class="mt-5">Result :- </h4> -->
+
+            <table
+                class="mt-5 table table-responsive table-striped table-active caption-top table-bordered shadow-lg">
+                <caption>Result :-</caption>
+                <thead class="table-secondary text-center">
+                    <tr class="text-nowrap">
+                        <th>Sr.No</th>
+                        <th>Subject</th>
+                        <th>MaxMarks</th>
+                        <th>Marks Obtained</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider text-center cer-data">
+
+                </tbody>
+
+                <tfoot class="table-group-divider text-center"> 
+                    <tr>
+                        <tr>
+                            <td class="text-nowrap" style="width: 8rem;" colspan="2">Total</td>
+                            <td class="text-nowrap max-marks" style="width: 8rem;"></td>
+                            <td class="text-nowrap mark-obtained" style="width: 8rem;"></td>
+                            <td class="text-nowrap total" style="width: 8rem;"></td>
+                        </tr>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="signature-box mt-5 shadow-lg">
+
+                <div class="sign-box" style="border-right: 2px solid #af8bbc;">Teacher Sign</div>
+                <div class="sign-box final-result-box"></div>
+                <div class="sign-box" style="border-left: 2px solid #af8bbc;">Student Sign</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- End certificate page coding -->
 
     <!-- JS File Link -->
     <script src="../dashboard/js/dashboard.js"></script>
