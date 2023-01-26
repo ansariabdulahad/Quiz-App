@@ -4,7 +4,12 @@ let profileBox = document.querySelector(".profile-box");
 let profileHeading = document.querySelector("#profile-heading");
 
 profileBox.addEventListener("click", () => {
-    window.open("../images/profile.jpg");
+
+    const styles = window.getComputedStyle(profileBox);
+    const image = styles.backgroundImage;
+    const url = image.slice(5, -2);
+
+    window.open(url);
 })
 
 /* End profile picture coding */
@@ -336,7 +341,7 @@ const checkSubject = () => {
     // }
     // else {
 
-        subject = chooseSubject.value;
+    subject = chooseSubject.value;
     // }
 
 }
@@ -491,9 +496,18 @@ registrationForm.onsubmit = function (event) {
 
     event.preventDefault();
 
-    registrationFunc();
+    let checkData = checkEnrollment(); // calling...
 
-    getRegistrationDataFunc();
+    if (checkData == "Found") {
+
+        swal("Already Registered !", "Please change your enrollment number !", "warning");
+    }
+    else {
+
+        registrationFunc();
+        getRegistrationDataFunc();
+    }
+
 }
 
 
@@ -503,6 +517,33 @@ if (localStorage.getItem(brandCodeEl + "_registrationData") != null) {
 
     registrationData = JSON.parse(localStorage.getItem(brandCodeEl + "_registrationData"));
 }
+
+
+// prevent to duplicate enrollment
+
+const checkEnrollment = () => {
+
+    let i;
+
+    var checkData = "";
+
+    for (i = 0; i < registrationData.length; i++) {
+
+        if (registrationData[i].enrollment == allRegInput[4].value) {
+
+            checkData = "Found";
+            break;
+        }
+        else {
+
+            checkData = "Not Found";
+        }
+
+    }
+
+    return checkData;
+}
+
 
 
 // registration function coding
@@ -1033,9 +1074,9 @@ const getCertificate = () => {
             cerfatherEl.innerHTML = userResult[0].fatherName;
 
             // profilePicEl.src = userResult[0].profilePic;
-            for(let i = 0; i < userResult.length; i++) {
+            for (let i = 0; i < userResult.length; i++) {
 
-                if(userResult[i].profilePic) {
+                if (userResult[i].profilePic) {
                     profilePicEl.src = userResult[i].profilePic;
                 }
             }
@@ -1043,15 +1084,15 @@ const getCertificate = () => {
             let maxMarks = 0;
             let markObtained = 0;
             let total = 0;
-            
-            let finalResult = (total/maxMarks*100).toFixed(2);
 
-            if(finalResult <= 32.99) {
-                
+            let finalResult = (total / maxMarks * 100).toFixed(2);
+
+            if (finalResult <= 32.99) {
+
                 finalResultBox.innerHTML = "FAIL";
             }
             else {
-                
+
                 finalResultBox.innerHTML = "PASS";
             }
 
@@ -1068,12 +1109,12 @@ const getCertificate = () => {
                     </tr>
                     
                 `
-                
+
                 maxMarks += data.maxMarks;
                 markObtained += data.rightAns;
-                total += data.rightAns;                
+                total += data.rightAns;
             })
-            
+
             cerMaxMarksEl.innerHTML = maxMarks;
             cerMarksObtainedEl.innerHTML = markObtained;
             cerTotalEl.innerHTML = total;

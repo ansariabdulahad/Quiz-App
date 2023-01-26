@@ -135,14 +135,14 @@ const submitFunc = () => {
 
     // condition to check allUserResult
 
-    if(localStorage.getItem(brandCode + "_" + subject + "_result") != null) {
+    if (localStorage.getItem(brandCode + "_" + subject + "_result") != null) {
 
         allUserResult = JSON.parse(localStorage.getItem(brandCode + "_" + subject + "_result"));
     }
 
     // condition to check perticular user result
 
-    if(localStorage.getItem(brandCode + "_" + stuEnrollment + "_result") != null) {
+    if (localStorage.getItem(brandCode + "_" + stuEnrollment + "_result") != null) {
 
         particularUserResult = JSON.parse(localStorage.getItem(brandCode + "_" + subject + "_result"));
     }
@@ -151,6 +151,8 @@ const submitFunc = () => {
     let submitBtn = document.querySelector(".quiz-submit-btn");
 
     submitBtn.onclick = function () {
+
+        document.cookie = brandCode + "_" + subject + "_" + stuEnrollment + "=done;max-age=86400;path=/";
 
         particularUserResultFunc(); // calling...
 
@@ -162,7 +164,6 @@ const submitFunc = () => {
         }, 1000);
     }
 }
-
 
 
 // allUserResult function coding 
@@ -184,7 +185,7 @@ const allUserResultFunc = () => {
     localStorage.setItem(brandCode + "_" + subject + "_result", JSON.stringify(allUserResult));
 
     setTimeout(() => {
-        
+
         sessionStorage.removeItem("enrollment");
         sessionStorage.removeItem("brandCode");
         sessionStorage.removeItem("address");
@@ -203,24 +204,24 @@ const allUserResultFunc = () => {
 // particular user result function
 
 const particularUserResultFunc = () => {
-    
+
     particularUserResult.push({
 
-        name : studentName,
-        fatherName : fatherName,
-        enrollment : stuEnrollment,
-        rightAns : right,
-        wrongAns : wrong,
-        maxMarks : total,
-        subject : subject,
-        profilePic : imgUrl
+        name: studentName,
+        fatherName: fatherName,
+        enrollment: stuEnrollment,
+        rightAns: right,
+        wrongAns: wrong,
+        maxMarks: total,
+        subject: subject,
+        profilePic: imgUrl
 
     })
 
     localStorage.setItem(brandCode + "_" + stuEnrollment + "_result", JSON.stringify(particularUserResult));
 
     setTimeout(() => {
-        
+
         sessionStorage.removeItem("enrollment");
         sessionStorage.removeItem("brandCode");
         sessionStorage.removeItem("address");

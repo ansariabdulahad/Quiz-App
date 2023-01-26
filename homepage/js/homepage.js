@@ -79,7 +79,7 @@ const loginUser = () => {
 
         loginNotice.innerHTML = "No data registered related to this brand !";
     }
-    
+
 
     // login form onsubmit coding
 
@@ -96,7 +96,7 @@ const loginUser = () => {
                     if (allUserData[i].userType == "Teacher") {
 
                         sessionStorage.setItem("brandCode", lBrandCode);
-                        
+
                         window.location = "../dashboard/dashboard.html";
                         loginSelectEl.innerHTML = ""; // empty after getting result
                         return;
