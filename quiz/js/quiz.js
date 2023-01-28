@@ -144,7 +144,7 @@ const submitFunc = () => {
 
     if (localStorage.getItem(brandCode + "_" + stuEnrollment + "_result") != null) {
 
-        particularUserResult = JSON.parse(localStorage.getItem(brandCode + "_" + subject + "_result"));
+        particularUserResult = JSON.parse(localStorage.getItem(brandCode + "_" + stuEnrollment + "_result"));
     }
     // console.log(particularUserResult);
 
