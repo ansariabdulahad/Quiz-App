@@ -1,3 +1,3 @@
 # Quiz-Application
 Please visit this below link
---> https://ansariabdulahad.github.io/Quiz-App/
+--> https://ansariabdulahad.github.io/Quiz-App/company/company.html
