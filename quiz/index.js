@@ -193,7 +193,7 @@ const allUserResultFunc = () => {
         sessionStorage.removeItem("subject");
         sessionStorage.removeItem("name");
 
-        window.location = "/homepage/index.html";
+        window.location = "/index.html";
 
         // swal("Congratulations !", "You have successfully completed your exam !", "success");
 
@@ -230,7 +230,7 @@ const particularUserResultFunc = () => {
         sessionStorage.removeItem("name");
         sessionStorage.removeItem("imgUrl");
 
-        window.location = "/homepage/index.html";
+        window.location = "/index.html";
 
         // swal("Congratulations !", "You have successfully completed your exam !", "success");
 
