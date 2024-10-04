@@ -68,7 +68,7 @@ startQuizBtn.addEventListener("click", () => {
 
             // sessionStorage.setItem("subject" ,brandCode + "_" + subject + "_question"); // direct set all // exceptional
             sessionStorage.setItem("subject", subject);
-            window.location = "../quiz/quiz.html";
+            window.location = "/quiz/index.html";
             allSubjectEl.innerHTML = "";
 
         }, 1500);

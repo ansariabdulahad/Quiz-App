@@ -97,7 +97,7 @@ const loginUser = () => {
 
                         sessionStorage.setItem("brandCode", lBrandCode);
 
-                        window.location = "../dashboard/dashboard.html";
+                        window.location = "/dashboard/index.html";
                         loginSelectEl.innerHTML = ""; // empty after getting result
                         return;
                     }
@@ -110,7 +110,7 @@ const loginUser = () => {
                         sessionStorage.setItem("imgUrl", allUserData[i].profilePic);
                         sessionStorage.setItem("brandCode", lBrandCode);
 
-                        window.location = "../welcome/welcome.html";
+                        window.location = "/welcome/index.html";
                         loginSelectEl.innerHTML = ""; // empty after getting result
                         return;
                     }

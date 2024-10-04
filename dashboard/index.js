@@ -59,7 +59,7 @@ else {
     }, 1000);
 
     setTimeout(() => {
-        window.location = "../company/company.html";
+        window.location = "/company/index.html";
     }, 4000);
 
 }
@@ -85,7 +85,7 @@ logoutBtn.addEventListener("click", (e) => {
     sessionStorage.removeItem("brandCode");
 
     setTimeout(() => {
-        window.location = "../company/company.html";
+        window.location = "/company/index.html";
     }, 3000);
 })
 

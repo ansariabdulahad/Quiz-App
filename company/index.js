@@ -114,7 +114,7 @@ signinBtn.addEventListener("click", () => {
                     signinBtn.disabled = true;
 
                     setTimeout(() => {
-                        window.location = ("../dashboard/dashboard.html");
+                        window.location = ("/dashboard/index.html");
 
                         // set key and value and get data on dashboard page.
                         sessionStorage.setItem("brandCode", brandCode.value);
